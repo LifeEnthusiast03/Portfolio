@@ -8,28 +8,21 @@ const Footer = () => {
     {
       icon: <Github className="w-6 h-6" />,
       name: "GitHub",
-      url: "https://github.com/yourusername",
+      url: "https://github.com/LifeEnthusiast03",
       color: "hover:bg-gray-800 hover:text-white",
       description: "Check out my code"
     },
     {
       icon: <Linkedin className="w-6 h-6" />,
       name: "LinkedIn",
-      url: "https://linkedin.com/in/yourprofile",
+      url: "https://www.linkedin.com/in/sougatasaha/",
       color: "hover:bg-blue-600 hover:text-white",
       description: "Connect professionally"
     },
     {
-      icon: <Twitter className="w-6 h-6" />,
-      name: "Twitter",
-      url: "https://twitter.com/yourusername",
-      color: "hover:bg-sky-500 hover:text-white",
-      description: "Follow my thoughts"
-    },
-    {
       icon: <Instagram className="w-6 h-6" />,
       name: "Instagram",
-      url: "https://instagram.com/yourusername",
+      url: "https://instagram.com/pet_pawli_cious",
       color: "hover:bg-gradient-to-r hover:from-pink-500 hover:to-orange-500 hover:text-white",
       description: "See my visual journey"
     }
@@ -45,17 +38,17 @@ const Footer = () => {
   const contactInfo = [
     {
       icon: <Mail className="w-5 h-5" />,
-      text: "your.email@gmail.com",
-      href: "mailto:your.email@gmail.com"
+      text: "sahasougata@gmail.com",
+      href: "sahasougata@gmail.com"
     },
     {
       icon: <Phone className="w-5 h-5" />,
-      text: "+91 XXXXX XXXXX",
-      href: "tel:+91XXXXXXXXXX"
+      text: "+91 6296824383",
+      href: "tel:+91 6296824383"
     },
     {
       icon: <MapPin className="w-5 h-5" />,
-      text: "Durgapur, West Bengal",
+      text: "Midnapore, West Bengal",
       href: "#"
     }
   ];
@@ -71,7 +64,7 @@ const Footer = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {/* Brand Section */}
           <div className="lg:col-span-2">
-            <h3 className="text-2xl font-bold text-white mb-4">Your Name</h3>
+            <h3 className="text-2xl font-bold text-white mb-4">Sougata Saha</h3>
             <p className="text-gray-400 mb-6 max-w-md">
               A passionate developer creating digital experiences that make a difference. 
               Let's build something amazing together.
@@ -148,7 +141,7 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row justify-between items-center">
             {/* Copyright */}
             <div className="text-gray-400 text-sm mb-4 md:mb-0 flex items-center">
-              <span>© 2025 Your Name. Made with</span>
+              <span>© 2025 Sougata Saha. Made with</span>
               <Heart className="w-4 h-4 mx-1 text-red-500 fill-current animate-pulse" />
               <span>and lots of coffee</span>
             </div>
