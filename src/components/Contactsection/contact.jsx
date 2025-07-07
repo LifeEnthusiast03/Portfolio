@@ -21,21 +21,21 @@ const ContactSection = ({ isVisible }) => {
     {
       icon: <Mail className="w-6 h-6" />,
       title: "Email",
-      value: "your.email@gmail.com",
+      value: "sahasougata820@gmail.com",
       link: "mailto:your.email@gmail.com",
       color: "from-red-500 to-pink-500"
     },
     {
       icon: <Phone className="w-6 h-6" />,
       title: "Phone",
-      value: "+91 XXXXX XXXXX",
-      link: "tel:+91XXXXXXXXXX",
+      value: "+91 6296824383",
+      link: "tel:+91-6296824383",
       color: "from-green-500 to-emerald-500"
     },
     {
       icon: <MapPin className="w-6 h-6" />,
       title: "Location",
-      value: "Durgapur, West Bengal",
+      value: "Midnapore, West Bengal",
       link: "#",
       color: "from-blue-500 to-cyan-500"
     }
