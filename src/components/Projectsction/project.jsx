@@ -1,0 +1,263 @@
+
+import React, { useState, useEffect } from 'react';
+import { ChevronDown, Mail, Phone, MapPin, Github, Linkedin, Twitter, ExternalLink, Download, Menu, X, Code, Palette, Database, Globe, Star, GitBranch, Eye } from 'lucide-react';
+
+// Projects Component
+const ProjectsSection = ({ isVisible }) => {
+  const [activeProject, setActiveProject] = useState(0);
+  const [hoveredProject, setHoveredProject] = useState(null);
+
+  const projects = [
+    {
+      id: 1,
+      title: "Real-Time Chat Application",
+      description: "A modern real-time chat application with authentication, multiple rooms, file sharing, and sleek UI built for seamless communication.",
+      longDescription: "Building a comprehensive chat platform with real-time messaging, user authentication, and file sharing capabilities using modern web technologies.",
+      technologies: ["Node.js", "Express", "Socket.io", "MongoDB", "React", "Socket.io-client"],
+      category: "Full Stack",
+      status: "In Progress",
+      github: "https://github.com",
+      live: "https://demo.com",
+      image: "/api/placeholder/600/400",
+      features: ["Real-time Messaging", "Multiple Rooms", "File Sharing", "User Authentication"],
+      stats: { stars: 32, forks: 12, views: 1800 },
+      timeline: "4-6 weeks",
+      commitment: "1-2 hours daily"
+    },
+    {
+      id: 2,
+      title: "AI-Powered Knowledge Base",
+      description: "An intelligent knowledge base with RAG implementation, vector search, real-time features, and enterprise-grade security for enhanced information retrieval.",
+      longDescription: "Developing an advanced AI-powered knowledge management system with RAG implementation and vector search capabilities for efficient information retrieval.",
+      technologies: ["React", "Node.js", "MongoDB", "Pinecone", "OpenAI API"],
+      category: "Gen AI",
+      status: "In Progress",
+      github: "https://github.com",
+      live: "https://demo.com",
+      image: "/api/placeholder/600/400",
+      features: ["RAG Implementation", "Vector Search", "Real-time Features", "Enterprise Security"],
+      stats: { stars: 45, forks: 18, views: 2400 },
+      timeline: "Ongoing",
+      commitment: "2-3 hours daily"
+    },
+    {
+      id: 3,
+      title: "Expense Tracker",
+      description: "A modern expense tracking application built with React and Material UI, featuring analytics, dark mode, and upcoming voice support for hands-free tracking.",
+      longDescription: "Built a comprehensive expense tracking solution with modern UI, data visualization, and upcoming voice recognition capabilities for enhanced user experience.",
+      technologies: ["React", "Material UI", "Chart.js", "React-Chartjs-2", "UUID"],
+      category: "Frontend",
+      status: "Completed",
+      github: "https://github.com",
+      live: "https://demo.com",
+      image: "/api/placeholder/600/400",
+      features: ["Expense Tracking", "Charts & Analytics", "Dark Mode", "Voice Support (Coming Soon)"],
+      stats: { stars: 28, forks: 9, views: 1600 }
+    },
+    {
+      id: 4,
+      title: "Weather App",
+      description: "A clean and responsive weather application built with vanilla HTML, CSS, and JavaScript, featuring real-time weather data and intuitive user interface.",
+      longDescription: "Built a simple yet effective weather app using core web technologies, focusing on clean code and responsive design principles.",
+      technologies: ["HTML", "CSS", "JavaScript", "Weather API"],
+      category: "Frontend",
+      status: "Completed",
+      github: "https://github.com",
+      live: "https://demo.com",
+      image: "/api/placeholder/600/400",
+      features: ["Real-time Weather Data", "Responsive Design", "Clean UI", "Location Search"],
+      stats: { stars: 15, forks: 6, views: 950 }
+    }
+  ];
+
+  const categories = ["All", "Full Stack", "Frontend", "Gen AI"];
+  const [selectedCategory, setSelectedCategory] = useState("All");
+
+  const filteredProjects = selectedCategory === "All" 
+    ? projects 
+    : projects.filter(project => project.category === selectedCategory);
+
+  const getCategoryColor = (category) => {
+    const colors = {
+      "Full Stack": "bg-blue-500/20 text-blue-300 border-blue-500/30",
+      "Frontend": "bg-green-500/20 text-green-300 border-green-500/30",
+      "AI/ML": "bg-purple-500/20 text-purple-300 border-purple-500/30"
+    };
+    return colors[category] || "bg-gray-500/20 text-gray-300 border-gray-500/30";
+  };
+
+  const getStatusColor = (status) => {
+    const statusColors = {
+      "Completed": "bg-green-500/20 text-green-300 border-green-500/30",
+      "In Progress": "bg-blue-500/20 text-blue-300 border-blue-500/30",
+      "Planning": "bg-yellow-500/20 text-yellow-300 border-yellow-500/30"
+    };
+    return statusColors[status] || "bg-gray-500/20 text-gray-300 border-gray-500/30";
+  };
+
+  return (
+    <section id="Projects" className="min-h-screen py-20 px-4 bg-gradient-to-br from-gray-900 via-black to-gray-900">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent">
+            Featured Projects
+          </h2>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            Showcasing my latest work in web development, mobile apps, and data science. 
+            Each project represents a unique challenge and creative solution.
+          </p>
+        </div>
+
+        {/* Category Filter */}
+        <div className={`flex flex-wrap justify-center gap-4 mb-12 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          {categories.map((category) => (
+            <button
+              key={category}
+              onClick={() => setSelectedCategory(category)}
+              className={`px-6 py-3 rounded-full border transition-all duration-300 hover:scale-105 ${
+                selectedCategory === category
+                  ? 'bg-blue-500/20 text-blue-300 border-blue-500/50 shadow-lg shadow-blue-500/25'
+                  : 'bg-gray-800/50 text-gray-300 border-gray-700/50 hover:bg-gray-700/50'
+              }`}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+
+        {/* Projects Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {filteredProjects.map((project, index) => (
+            <div
+              key={project.id}
+              className={`group relative bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-2xl overflow-hidden border border-gray-700/50 hover:border-blue-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/10 hover:scale-[1.02] ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`}
+              style={{ transitionDelay: `${index * 100}ms` }}
+              onMouseEnter={() => setHoveredProject(project.id)}
+              onMouseLeave={() => setHoveredProject(null)}
+            >
+              {/* Project Image */}
+              <div className="relative h-48 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-purple-600/20 opacity-80"></div>
+                <div className="absolute inset-0 bg-black/20"></div>
+                
+                {/* Status Badge */}
+                <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-sm font-medium border ${getStatusColor(project.status)}`}>
+                  {project.status}
+                </div>
+
+                {/* Category Badge */}
+                <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-sm font-medium border ${getCategoryColor(project.category)}`}>
+                  {project.category}
+                </div>
+
+                {/* Hover Overlay */}
+                <div className={`absolute inset-0 bg-black/60 flex items-center justify-center gap-4 transition-all duration-300 ${
+                  hoveredProject === project.id ? 'opacity-100' : 'opacity-0'
+                }`}>
+                  <a
+                    href={project.github}
+                    className="p-3 bg-white/10 rounded-full hover:bg-white/20 transition-all duration-300 hover:scale-110"
+                  >
+                    <Github className="w-6 h-6" />
+                  </a>
+                  <a
+                    href={project.live}
+                    className="p-3 bg-white/10 rounded-full hover:bg-white/20 transition-all duration-300 hover:scale-110"
+                  >
+                    <ExternalLink className="w-6 h-6" />
+                  </a>
+                </div>
+              </div>
+
+              {/* Project Content */}
+              <div className="p-6">
+                <div className="flex items-start justify-between mb-4">
+                  <h3 className="text-2xl font-bold text-white group-hover:text-blue-300 transition-colors duration-300">
+                    {project.title}
+                  </h3>
+                  <div className="flex items-center gap-4 text-sm text-gray-400">
+                    <div className="flex items-center gap-1">
+                      <Star className="w-4 h-4" />
+                      {project.stats.stars}
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <GitBranch className="w-4 h-4" />
+                      {project.stats.forks}
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Eye className="w-4 h-4" />
+                      {project.stats.views}
+                    </div>
+                  </div>
+                </div>
+
+                <p className="text-gray-300 mb-6 leading-relaxed">
+                  {project.description}
+                </p>
+
+                {/* Technologies */}
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {project.technologies.map((tech, techIndex) => (
+                    <span
+                      key={techIndex}
+                      className="px-3 py-1 bg-gray-700/50 text-gray-300 rounded-full text-sm border border-gray-600/50 hover:bg-gray-600/50 transition-colors duration-300"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Features */}
+                <div className="mb-6">
+                  <h4 className="text-sm font-semibold text-gray-400 mb-2">Key Features:</h4>
+                  <div className="grid grid-cols-2 gap-2">
+                    {project.features.map((feature, featureIndex) => (
+                      <div key={featureIndex} className="flex items-center gap-2 text-sm text-gray-300">
+                        <div className="w-1.5 h-1.5 bg-blue-400 rounded-full"></div>
+                        {feature}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex gap-4">
+                  <a
+                    href={project.github}
+                    className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-gray-700/50 hover:bg-gray-600/50 rounded-lg transition-all duration-300 hover:shadow-lg border border-gray-600/50 hover:border-gray-500/50"
+                  >
+                    <Github className="w-5 h-5" />
+                    <span>Code</span>
+                  </a>
+                  <a
+                    href={project.live}
+                    className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-blue-600/20 hover:bg-blue-500/30 rounded-lg transition-all duration-300 hover:shadow-lg border border-blue-500/30 hover:border-blue-400/50"
+                  >
+                    <ExternalLink className="w-5 h-5" />
+                    <span>Live Demo</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom CTA */}
+        <div className={`text-center mt-16 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <p className="text-gray-400 mb-6">Want to see more of my work?</p>
+          <a
+            href="https://github.com"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 rounded-lg font-semibold transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/25 hover:scale-105"
+          >
+            <Github className="w-5 h-5" />
+            View All Projects on GitHub
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+};
+export default ProjectsSection
