@@ -225,7 +225,7 @@ const EducationSection = ({ isVisible = true }) => {
   };
 
   return (
-    <section id="education" className="min-h-screen py-20 px-4 sm:px-6 lg:px-8 bg-gray-900/20">
+    <section id="Education" className="min-h-screen py-20 px-4 sm:px-6 lg:px-8 bg-gray-900/20">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
