@@ -1,9 +1,8 @@
-
 import React, { useState, useEffect } from 'react';
 import { ChevronDown, Mail, Phone, MapPin, Github, Linkedin, Twitter, ExternalLink, Download, Menu, X, Code, Palette, Database, Globe, Star, GitBranch, Eye } from 'lucide-react';
 
 // Projects Component
-const ProjectsSection = ({ isVisible }) => {
+const ProjectsSection = ({ isVisible = true }) => {
   const [activeProject, setActiveProject] = useState(0);
   const [hoveredProject, setHoveredProject] = useState(null);
 
@@ -56,16 +55,25 @@ const ProjectsSection = ({ isVisible }) => {
     },
     {
       id: 4,
-      title: "Weather App",
-      description: "A clean and responsive weather application built with vanilla HTML, CSS, and JavaScript, featuring real-time weather data and intuitive user interface.",
-      longDescription: "Built a simple yet effective weather app using core web technologies, focusing on clean code and responsive design principles.",
-      technologies: ["HTML", "CSS", "JavaScript", "Weather API"],
+      title: "SkyFlect - Weather App",
+      description: "A modern and responsive weather application built with React, featuring real-time weather data, dynamic backgrounds, and glassmorphism design.",
+      longDescription: "A sophisticated weather application showcasing advanced UI patterns with dynamic weather-based backgrounds, smooth animations, and a beautiful glassmorphism interface. Features real-time weather data with detailed metrics and responsive design across all devices.",
+      technologies: ["React", "JavaScript", "Tailwind CSS", "OpenWeather API", "Lucide React"],
       category: "Frontend",
       status: "Completed",
-      github: "https://github.com",
-      live: "https://demo.com",
-      image: "/api/placeholder/600/400",
-      features: ["Real-time Weather Data", "Responsive Design", "Clean UI", "Location Search"],
+      github: "https://github.com/LifeEnthusiast03/weather_app",
+      live: "https://skyflect.vercel.app/",
+      image: "/skyfleat.png",
+      features: [
+        "Real-time Weather Data",
+        "Dynamic Weather Backgrounds", 
+        "Glassmorphism UI Design",
+        "Responsive Design",
+        "Location Search",
+        "Weather Animations",
+        "Detailed Weather Metrics",
+        "Modern React Architecture"
+      ],
       stats: { stars: 15, forks: 6, views: 950 }
     }
   ];
@@ -81,6 +89,7 @@ const ProjectsSection = ({ isVisible }) => {
     const colors = {
       "Full Stack": "bg-blue-500/20 text-blue-300 border-blue-500/30",
       "Frontend": "bg-green-500/20 text-green-300 border-green-500/30",
+      "Gen AI": "bg-purple-500/20 text-purple-300 border-purple-500/30",
       "AI/ML": "bg-purple-500/20 text-purple-300 border-purple-500/30"
     };
     return colors[category] || "bg-gray-500/20 text-gray-300 border-gray-500/30";
@@ -140,32 +149,50 @@ const ProjectsSection = ({ isVisible }) => {
             >
               {/* Project Image */}
               <div className="relative h-48 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-purple-600/20 opacity-80"></div>
-                <div className="absolute inset-0 bg-black/20"></div>
+                {/* Actual Image */}
+                <img 
+                  src={project.image} 
+                  alt={project.title}
+                  className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
+                  onError={(e) => {
+                    // Fallback to gradient background if image fails to load
+                    e.target.style.display = 'none';
+                  }}
+                />
+                
+                {/* Fallback gradient background */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-purple-600/20"></div>
+                
+                {/* Dark overlay for better text readability */}
+                <div className="absolute inset-0 bg-black/30"></div>
                 
                 {/* Status Badge */}
-                <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-sm font-medium border ${getStatusColor(project.status)}`}>
+                <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-sm font-medium border backdrop-blur-sm ${getStatusColor(project.status)}`}>
                   {project.status}
                 </div>
 
                 {/* Category Badge */}
-                <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-sm font-medium border ${getCategoryColor(project.category)}`}>
+                <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-sm font-medium border backdrop-blur-sm ${getCategoryColor(project.category)}`}>
                   {project.category}
                 </div>
 
                 {/* Hover Overlay */}
-                <div className={`absolute inset-0 bg-black/60 flex items-center justify-center gap-4 transition-all duration-300 ${
+                <div className={`absolute inset-0 bg-black/70 flex items-center justify-center gap-4 transition-all duration-300 ${
                   hoveredProject === project.id ? 'opacity-100' : 'opacity-0'
                 }`}>
                   <a
                     href={project.github}
-                    className="p-3 bg-white/10 rounded-full hover:bg-white/20 transition-all duration-300 hover:scale-110"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 bg-white/10 backdrop-blur-sm rounded-full hover:bg-white/20 transition-all duration-300 hover:scale-110"
                   >
                     <Github className="w-6 h-6" />
                   </a>
                   <a
                     href={project.live}
-                    className="p-3 bg-white/10 rounded-full hover:bg-white/20 transition-all duration-300 hover:scale-110"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 bg-white/10 backdrop-blur-sm rounded-full hover:bg-white/20 transition-all duration-300 hover:scale-110"
                   >
                     <ExternalLink className="w-6 h-6" />
                   </a>
@@ -227,6 +254,8 @@ const ProjectsSection = ({ isVisible }) => {
                 <div className="flex gap-4">
                   <a
                     href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-gray-700/50 hover:bg-gray-600/50 rounded-lg transition-all duration-300 hover:shadow-lg border border-gray-600/50 hover:border-gray-500/50"
                   >
                     <Github className="w-5 h-5" />
@@ -234,6 +263,8 @@ const ProjectsSection = ({ isVisible }) => {
                   </a>
                   <a
                     href={project.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-blue-600/20 hover:bg-blue-500/30 rounded-lg transition-all duration-300 hover:shadow-lg border border-blue-500/30 hover:border-blue-400/50"
                   >
                     <ExternalLink className="w-5 h-5" />
@@ -250,6 +281,8 @@ const ProjectsSection = ({ isVisible }) => {
           <p className="text-gray-400 mb-6">Want to see more of my work?</p>
           <a
             href="https://github.com"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 rounded-lg font-semibold transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/25 hover:scale-105"
           >
             <Github className="w-5 h-5" />
@@ -260,4 +293,5 @@ const ProjectsSection = ({ isVisible }) => {
     </section>
   );
 };
-export default ProjectsSection
+
+export default ProjectsSection;
