@@ -112,7 +112,7 @@ const SkillsSection = ({ isVisible }) => {
 
     return (
       <div
-        className={`group relative bg-gray-900/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-800 hover:border-gray-600 transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 ${
+        className={`group relative bg-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/10 hover:border-white/20 transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 hover:shadow-[0_8px_32px_0_rgba(59,130,246,0.2)] ${
           isAnimated ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
         }`}
       >
@@ -133,7 +133,7 @@ const SkillsSection = ({ isVisible }) => {
           </div>
           
           {/* Skill Level Badge */}
-          <div className={`flex items-center space-x-1 px-3 py-1 rounded-full bg-gray-800/50 border border-gray-700 ${skillLevel.color}`}>
+          <div className={`flex items-center space-x-1 px-3 py-1 rounded-full bg-white/5 border border-white/10 ${skillLevel.color}`}>
             {skillLevel.icon}
             <span className="text-xs font-medium">{skillLevel.text}</span>
           </div>
@@ -187,8 +187,20 @@ const SkillsSection = ({ isVisible }) => {
   };
 
   return (
-    <section id="Skills" className="min-h-screen py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <section id="Skills" className="min-h-screen py-20 px-4 sm:px-6 lg:px-8 bg-[#0a0a0a] relative">
+      {/* Dotted Glow Background */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(139,92,246,0.12)_1px,transparent_1px)] bg-[size:35px_35px]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.08)_1px,transparent_1px)] bg-[size:55px_55px] animate-pulse" style={{animationDuration: '6s'}}></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-purple-950/5 via-transparent to-blue-950/5"></div>
+        
+        {/* Ripple Effects */}
+        <div className="ripple top-1/4 left-1/3 w-44 h-44 bg-purple-500/10" style={{animationDelay: '0s'}}></div>
+        <div className="ripple bottom-1/3 right-1/4 w-32 h-32 bg-blue-500/8" style={{animationDelay: '1.8s'}}></div>
+        <div className="ripple top-1/2 left-2/3 w-36 h-36 bg-indigo-500/8" style={{animationDelay: '3.2s'}}></div>
+      </div>
+      
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className={`text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent transition-all duration-1000 ${
@@ -211,10 +223,10 @@ const SkillsSection = ({ isVisible }) => {
             <button
               key={index}
               onClick={() => setActiveCategory(index)}
-              className={`flex items-center space-x-2 px-6 py-3 rounded-full border transition-all duration-300 transform hover:scale-105 ${
+              className={`flex items-center space-x-2 px-6 py-3 rounded-full border transition-all duration-300 transform hover:scale-105 backdrop-blur-xl ${
                 activeCategory === index
-                  ? `bg-gradient-to-r ${category.color} text-white border-transparent shadow-lg`
-                  : 'bg-gray-900/50 text-gray-400 border-gray-800 hover:border-gray-600 hover:text-gray-300'
+                  ? `bg-gradient-to-r ${category.color} text-white border-transparent shadow-[0_8px_32px_0_rgba(59,130,246,0.4)]`
+                  : 'bg-white/5 text-gray-400 border-white/10 hover:border-white/20 hover:text-gray-300 hover:bg-white/10'
               }`}
             >
               {category.icon}
@@ -238,7 +250,7 @@ const SkillsSection = ({ isVisible }) => {
         <div className={`mt-12 text-center transition-all duration-1000 delay-1200 ${
           isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
         }`}>
-          <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 backdrop-blur-sm rounded-full px-6 py-3 border border-blue-500/20">
+          <div className="inline-flex items-center space-x-2 bg-white/5 backdrop-blur-xl rounded-full px-6 py-3 border border-white/10">
             <Terminal className="w-5 h-5 text-blue-400" />
             <span className="text-gray-300">Continuously evolving, always innovating</span>
           </div>

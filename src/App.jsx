@@ -64,7 +64,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-[#0a0a0a] text-white">
       <Navbar activeSection={activeSection} onSectionClick={scrollToSection}/>
       <HeroSection onSectionClick={scrollToSection}/>
       <ProjectsSection isVisible={isVisible.Projects} />
@@ -77,7 +77,7 @@ export default function App() {
       {showBackToTop && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-50 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 group"
+          className="fixed bottom-8 right-8 z-50 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white p-3 rounded-full shadow-[0_8px_32px_0_rgba(59,130,246,0.4)] transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 group backdrop-blur-xl"
           aria-label="Back to top"
         >
           <ArrowUp className="w-6 h-6 group-hover:-translate-y-1 transition-transform duration-300" />

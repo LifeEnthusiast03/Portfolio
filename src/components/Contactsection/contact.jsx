@@ -77,27 +77,33 @@ const ContactSection = ({ isVisible = true }) => {
   };
 
   return (
-    <section id="Contact" className="min-h-screen py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-black">
-      {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Subtle dark blue glows */}
-        <div className="absolute top-20 left-20 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-20 w-80 h-80 bg-indigo-500/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '3s' }} />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-cyan-500/3 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '6s' }} />
+    <section id="Contact" className="min-h-screen py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-[#0a0a0a]">
+      {/* Dotted Glow Background */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Dotted patterns */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.15)_1px,transparent_1px)] bg-[size:32px_32px]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(139,92,246,0.1)_1px,transparent_1px)] bg-[size:52px_52px] animate-pulse" style={{animationDuration: '4.5s'}}></div>
         
-        {/* Subtle grid pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.02)_1px,transparent_1px)] bg-[size:60px_60px]" />
+        {/* Glowing orbs */}
+        <div className="absolute top-20 left-20 w-96 h-96 bg-blue-500/3 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-20 right-20 w-80 h-80 bg-purple-500/3 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '3s' }} />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-cyan-500/2 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '6s' }} />
+        
+        {/* Ripple Effects */}
+        <div className="ripple top-1/4 right-1/3 w-40 h-40 bg-blue-500/12" style={{animationDelay: '0s'}}></div>
+        <div className="ripple bottom-1/3 left-1/4 w-48 h-48 bg-purple-500/10" style={{animationDelay: '1.5s'}}></div>
+        <div className="ripple top-2/3 right-1/2 w-36 h-36 bg-cyan-500/12" style={{animationDelay: '3s'}}></div>
         
         {/* Floating particles */}
-        <div className="absolute top-1/4 left-1/3 w-1 h-1 bg-blue-400/30 rounded-full animate-ping" style={{ animationDelay: '2s' }} />
-        <div className="absolute top-3/4 right-1/4 w-1 h-1 bg-cyan-400/30 rounded-full animate-ping" style={{ animationDelay: '4s' }} />
-        <div className="absolute bottom-1/3 left-1/4 w-1 h-1 bg-indigo-400/30 rounded-full animate-ping" style={{ animationDelay: '6s' }} />
+        <div className="absolute top-1/4 left-1/3 w-2 h-2 bg-blue-400/30 rounded-full animate-ping" style={{ animationDelay: '2s' }} />
+        <div className="absolute top-3/4 right-1/4 w-2 h-2 bg-cyan-400/30 rounded-full animate-ping" style={{ animationDelay: '4s' }} />
+        <div className="absolute bottom-1/3 left-1/4 w-2 h-2 bg-purple-400/30 rounded-full animate-ping" style={{ animationDelay: '6s' }} />
       </div>
       
       <div className="max-w-6xl mx-auto w-full relative z-10">
         {/* Header */}
         <div className="text-center mb-12">
-          <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-900/50 backdrop-blur-sm border border-gray-800/50 mb-6 transition-all duration-1000 ${
+          <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 mb-6 transition-all duration-1000 ${
             hasAnimated ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
           }`}>
             <Star className="w-4 h-4 text-blue-400" />
@@ -128,7 +134,7 @@ const ContactSection = ({ isVisible = true }) => {
             {contactInfo.map((info, index) => (
               <div
                 key={index}
-                className={`group relative p-5 rounded-xl bg-gray-900/40 backdrop-blur-sm border border-gray-800/50 hover:border-gray-700/50 transition-all duration-300 cursor-pointer hover:-translate-y-1 ${info.shadowColor} hover:shadow-xl hover:bg-gray-900/60`}
+                className={`group relative p-5 rounded-xl bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/20 transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-[0_8px_32px_0_rgba(59,130,246,0.2)] hover:bg-white/10`}
                 onMouseEnter={() => setHoveredCard(index)}
                 onMouseLeave={() => setHoveredCard(null)}
               >
@@ -162,7 +168,7 @@ const ContactSection = ({ isVisible = true }) => {
             ))}
 
             {/* Additional Info */}
-            <div className="p-5 rounded-xl bg-gray-900/40 backdrop-blur-sm border border-gray-800/50">
+            <div className="p-5 rounded-xl bg-white/5 backdrop-blur-xl border border-white/10">
               <div className="flex items-center space-x-3 mb-3">
                 <Code className="w-4 h-4 text-blue-400" />
                 <h3 className="text-base font-semibold text-gray-200">Quick Facts</h3>
@@ -188,7 +194,7 @@ const ContactSection = ({ isVisible = true }) => {
           <div className={`lg:col-span-2 transition-all duration-1000 delay-800 ${
             hasAnimated ? 'translate-y-0 opacity-100' : 'translate-y-16 opacity-0'
           }`}>
-            <div className="p-6 rounded-xl bg-gray-900/40 backdrop-blur-sm border border-gray-800/50">
+            <div className="p-6 rounded-xl bg-white/5 backdrop-blur-xl border border-white/10">
               <div className="flex items-center mb-6">
                 <div className="p-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg mr-3 shadow-lg">
                   <Send className="w-5 h-5 text-white" />

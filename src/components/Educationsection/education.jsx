@@ -71,13 +71,13 @@ const EducationSection = ({ isVisible = true }) => {
       onClick={() => onClick(id)}
       className={`relative px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
         isActive
-          ? 'bg-white text-gray-900 shadow-lg'
-          : 'text-gray-400 hover:text-white hover:bg-gray-800/50'
+          ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-[0_8px_32px_0_rgba(59,130,246,0.4)]'
+          : 'text-gray-400 hover:text-white hover:bg-white/5 border border-white/10'
       }`}
     >
       {label}
       <span className={`ml-2 text-xs px-2 py-1 rounded-full ${
-        isActive ? 'bg-gray-200 text-gray-700' : 'bg-gray-700 text-gray-300'
+        isActive ? 'bg-white/20 text-white' : 'bg-white/5 text-gray-400'
       }`}>
         {count}
       </span>
@@ -225,8 +225,20 @@ const EducationSection = ({ isVisible = true }) => {
   };
 
   return (
-    <section id="Education" className="min-h-screen py-20 px-4 sm:px-6 lg:px-8 bg-gray-900/20">
-      <div className="max-w-6xl mx-auto">
+    <section id="Education" className="min-h-screen py-20 px-4 sm:px-6 lg:px-8 bg-[#0a0a0a] relative">
+      {/* Dotted Glow Background */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.12)_1px,transparent_1px)] bg-[size:38px_38px]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.08)_1px,transparent_1px)] bg-[size:58px_58px] animate-pulse" style={{animationDuration: '5.5s'}}></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-cyan-950/5 via-transparent to-blue-950/5"></div>
+        
+        {/* Ripple Effects */}
+        <div className="ripple top-1/3 left-1/4 w-40 h-40 bg-cyan-500/10" style={{animationDelay: '0.3s'}}></div>
+        <div className="ripple bottom-1/4 right-1/3 w-36 h-36 bg-blue-500/8" style={{animationDelay: '2.2s'}}></div>
+        <div className="ripple top-2/3 right-2/3 w-32 h-32 bg-teal-500/8" style={{animationDelay: '3.8s'}}></div>
+      </div>
+      
+      <div className="max-w-6xl mx-auto relative z-10">
         {/* Header */}
         <div className="text-center mb-12">
           <h2 className={`text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent transition-all duration-1000 ${
@@ -245,7 +257,7 @@ const EducationSection = ({ isVisible = true }) => {
         <div className={`flex justify-center mb-12 transition-all duration-1000 delay-400 ${
           hasAnimated ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
         }`}>
-          <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-1 border border-gray-700">
+          <div className="bg-white/5 backdrop-blur-xl rounded-xl p-1 border border-white/10">
             <TabButton
               id="education"
               label="Education"
@@ -286,7 +298,7 @@ const EducationSection = ({ isVisible = true }) => {
         <div className={`mt-12 text-center transition-all duration-1000 delay-600 ${
           hasAnimated ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
         }`}>
-          <div className="inline-flex items-center space-x-8 bg-gradient-to-r from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-2xl px-8 py-4 border border-gray-700">
+          <div className="inline-flex items-center space-x-8 bg-white/5 backdrop-blur-xl rounded-2xl px-8 py-4 border border-white/10">
             <div className="text-center">
               <div className="text-2xl font-bold text-white">8.50</div>
               <div className="text-sm text-gray-400">Current SGPA</div>

@@ -44,7 +44,7 @@ const Footer = () => {
 
 
   return (
-    <footer className="bg-slate-900 border-t border-slate-800">
+    <footer className="bg-[#0a0a0a] border-t border-white/10 backdrop-blur-xl">
       {/* Main Content */}
       <div className="max-w-6xl mx-auto px-4 py-8">
         <div className="grid md:grid-cols-3 gap-8">
@@ -53,7 +53,7 @@ const Footer = () => {
             <h3 className="text-xl font-bold text-white mb-3">
               Sougata Saha
             </h3>
-            <p className="text-slate-400 text-sm mb-4">
+            <p className="text-gray-400 text-sm mb-4">
               Full Stack Developer crafting digital experiences with passion and precision.
             </p>
             
@@ -65,7 +65,7 @@ const Footer = () => {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`text-slate-400 ${social.color} transition-colors duration-300 p-2 rounded-lg hover:bg-slate-800`}
+                  className={`text-gray-400 ${social.color} transition-colors duration-300 p-2 rounded-lg hover:bg-white/5`}
                   aria-label={social.name}
                 >
                   {social.icon}
@@ -84,7 +84,7 @@ const Footer = () => {
                 <li key={index}>
                   <a
                     href={`#${link}`}
-                    className="text-slate-400 hover:text-white transition-colors duration-300 text-sm"
+                    className="text-gray-400 hover:text-white transition-colors duration-300 text-sm"
                   >
                     {link}
                   </a>
@@ -103,7 +103,7 @@ const Footer = () => {
                 <li key={index}>
                   <a
                     href={info.href}
-                    className="text-slate-400 hover:text-white transition-colors duration-300 flex items-center text-sm"
+                    className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center text-sm"
                   >
                     <span className="mr-2">
                       {info.icon}
@@ -118,11 +118,11 @@ const Footer = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-slate-800 bg-slate-950">
+      <div className="border-t border-white/10 bg-[#0a0a0a]">
         <div className="max-w-6xl mx-auto px-4 py-4">
           <div className="flex justify-center">
             {/* Copyright */}
-            <div className="text-slate-400 text-sm flex items-center">
+            <div className="text-gray-400 text-sm flex items-center">
               <span>© 2025 Sougata Saha. Made with</span>
               <Heart className="w-4 h-4 mx-1 text-red-400 fill-current" />
               <span>and code</span>
