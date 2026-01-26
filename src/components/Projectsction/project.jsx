@@ -75,7 +75,42 @@ const ProjectsSection = ({ isVisible = true }) => {
         "Modern React Architecture"
       ],
       stats: { stars: 15, forks: 6, views: 950 }
-    }
+    },
+     {
+  id: 5,
+  title: "Blog App - Modern Blogging Platform",
+  description: "A fast and modern blog application built with TypeScript and React, featuring efficient data fetching with React Query and a clean UI using shadcn/ui.",
+  longDescription: "A full-featured blogging platform built with a modern frontend stack including Vite for fast performance, TypeScript for type safety, React Query for efficient server-state management, and shadcn/ui for a polished and accessible user interface. The app supports viewing, creating, and managing blog posts with a smooth and responsive user experience.",
+  technologies: [
+    "React",
+    "TypeScript",
+    "Vite",
+    "React Query",
+    "shadcn/ui",
+    "Tailwind CSS"
+  ],
+  category: "Frontend",
+  status: "Completed",
+  github: "https://github.com/LifeEnthusiast03/Frontend-Interview",   // update with your repo link
+  live: "https://blogcur.vercel.app/",           // update with live link
+  image: "/blogapp.png",
+  features: [
+    "Fast Performance with Vite",
+    "Type-safe Codebase using TypeScript",
+    "Efficient API Handling with React Query",
+    "Modern UI Components with shadcn/ui",
+    "Responsive Design",
+    "Blog Listing & Detail Pages",
+    "Loading & Error State Handling",
+    "Clean and Scalable Architecture"
+  ],
+  stats: {
+    stars: 0,
+    forks: 0,
+    views: 0
+  }
+}
+
   ];
 
   const categories = ["All", "Full Stack", "Frontend", "Gen AI"];
