@@ -89,17 +89,17 @@ const HeroSection = ({ onSectionClick }) => {
   return (
     <section
       id="Home"
-      className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden bg-[#0a0a0a]"
+      className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden bg-[#050505]"
     >
       {/* Dotted Glow Background */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.15)_1px,transparent_1px)] bg-[size:30px_30px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,black_40%,transparent_100%)]"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(139,92,246,0.1)_1px,transparent_1px)] bg-[size:50px_50px] animate-pulse" style={{animationDuration: '4s'}}></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.15)_1px,transparent_1px)] bg-[size:30px_30px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,black_40%,transparent_100%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.1)_1px,transparent_1px)] bg-[size:50px_50px] animate-pulse" style={{animationDuration: '4s'}}></div>
         
         {/* Ripple Effects */}
         <div className="ripple top-1/4 left-1/4 w-32 h-32 bg-blue-500/10" style={{animationDelay: '0s'}}></div>
-        <div className="ripple top-2/3 right-1/3 w-40 h-40 bg-purple-500/8" style={{animationDelay: '1.5s'}}></div>
-        <div className="ripple bottom-1/4 left-1/2 w-36 h-36 bg-cyan-500/10" style={{animationDelay: '3s'}}></div>
+        <div className="ripple top-2/3 right-1/3 w-40 h-40 bg-blue-600/10" style={{animationDelay: '1.5s'}}></div>
+        <div className="ripple bottom-1/4 left-1/2 w-36 h-36 bg-blue-700/10" style={{animationDelay: '3s'}}></div>
       </div>
       
       {/* Floating Geometric Shapes */}
@@ -108,14 +108,14 @@ const HeroSection = ({ onSectionClick }) => {
         <div className="absolute top-20 left-20 w-24 h-24 border border-blue-500/10 transform rotate-45 animate-spin" style={{ animationDuration: "20s", clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)" }}></div>
         
         {/* Triangle */}
-        <div className="absolute top-40 right-32 w-16 h-16 border border-purple-500/10 animate-pulse" style={{ clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)" }}></div>
+        <div className="absolute top-40 right-32 w-16 h-16 border border-blue-600/10 animate-pulse" style={{ clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)" }}></div>
         
         {/* Morphing Circle */}
-        <div className="absolute bottom-32 left-16 w-20 h-20 bg-gradient-to-r from-blue-500/5 to-purple-500/5 rounded-full animate-ping"></div>
+        <div className="absolute bottom-32 left-16 w-20 h-20 bg-gradient-to-r from-blue-500/5 to-blue-700/5 rounded-full animate-ping"></div>
         
         {/* Floating Lines */}
         <div className="absolute top-1/3 right-1/4 w-32 h-0.5 bg-gradient-to-r from-transparent via-blue-500/30 to-transparent animate-pulse"></div>
-        <div className="absolute bottom-1/3 left-1/4 w-24 h-0.5 bg-gradient-to-r from-transparent via-purple-500/30 to-transparent animate-pulse delay-1000"></div>
+        <div className="absolute bottom-1/3 left-1/4 w-24 h-0.5 bg-gradient-to-r from-transparent via-blue-600/30 to-transparent animate-pulse delay-1000"></div>
       </div>
 
       {/* Main Content */}
@@ -125,8 +125,8 @@ const HeroSection = ({ onSectionClick }) => {
           <div className="text-center lg:text-left order-2 lg:order-1">
             {/* Floating Badge */}
             <div className="mb-8 relative">
-              <div className="inline-flex items-center px-6 py-3 bg-white/5 backdrop-blur-xl border border-white/10 rounded-full text-blue-400 text-sm font-medium relative overflow-hidden group shadow-[0_8px_32px_0_rgba(59,130,246,0.1)]">
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+              <div className="inline-flex items-center px-6 py-3 bg-black/70 backdrop-blur-xl border border-gray-800/70 rounded-full text-blue-400 text-sm font-medium relative overflow-hidden group shadow-[0_8px_32px_0_rgba(37,99,235,0.15)] hover:border-blue-600/30 transition-all duration-300">
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-blue-700/10 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
                 <span className="relative z-10">👋 Welcome To My Digital Realm</span>
               </div>
             </div>
@@ -139,11 +139,11 @@ const HeroSection = ({ onSectionClick }) => {
                 </span>
                 <br />
                 <span className="relative inline-block">
-                  <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent bg-300% animate-gradient">
+                  <span className="bg-gradient-to-r from-blue-400 via-blue-500 to-cyan-400 bg-clip-text text-transparent bg-300% animate-gradient">
                     Sougata Saha
                   </span>
                   {/* Underline Animation */}
-                  <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-purple-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 rounded-full"></div>
+                  <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-blue-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 rounded-full"></div>
                 </span>
               </div>
             </h1>
@@ -179,9 +179,9 @@ const HeroSection = ({ onSectionClick }) => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12">
               <button
                 onClick={() => onSectionClick("Projects")}
-                className="relative px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl overflow-hidden group transform hover:scale-105 transition-all duration-300 shadow-[0_8px_32px_0_rgba(59,130,246,0.3)] hover:shadow-[0_8px_40px_0_rgba(139,92,246,0.4)] font-semibold"
+                className="relative px-8 py-4 bg-gradient-to-r from-blue-700 to-blue-600 text-white rounded-xl overflow-hidden group transform hover:scale-105 transition-all duration-300 shadow-[0_8px_32px_0_rgba(37,99,235,0.4)] hover:shadow-[0_8px_40px_0_rgba(59,130,246,0.5)] font-semibold"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 translate-y-[100%] group-hover:translate-y-[0%] transition-transform duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-800 translate-y-[100%] group-hover:translate-y-[0%] transition-transform duration-300"></div>
                 <span className="relative z-10 flex items-center gap-2">
                   <Zap size={20} />
                   Explore My Work
@@ -190,7 +190,7 @@ const HeroSection = ({ onSectionClick }) => {
               
               <button 
                 onClick={handleDownloadCV}
-                className="relative px-8 py-4 border border-white/20 text-white rounded-xl hover:bg-white hover:text-black transition-all duration-300 flex items-center justify-center gap-2 shadow-[0_8px_32px_0_rgba(255,255,255,0.05)] hover:shadow-[0_8px_32px_0_rgba(255,255,255,0.2)] font-semibold group overflow-hidden backdrop-blur-sm"
+                className="relative px-8 py-4 border-2 border-gray-800 text-white rounded-xl hover:bg-white hover:text-black hover:border-white transition-all duration-300 flex items-center justify-center gap-2 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] hover:shadow-[0_8px_32px_0_rgba(255,255,255,0.2)] font-semibold group overflow-hidden backdrop-blur-sm"
               >
                 <div className="absolute inset-0 bg-white translate-y-[100%] group-hover:translate-y-[0%] transition-transform duration-300"></div>
                 <span className="relative z-10 flex items-center gap-2 group-hover:text-black">
@@ -215,7 +215,7 @@ const HeroSection = ({ onSectionClick }) => {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`group relative p-3 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/30 transition-all duration-300 hover:scale-110 hover:shadow-[0_8px_32px_0_rgba(59,130,246,0.3)] ${social.hoverColor}`}
+                    className={`group relative p-3 rounded-full bg-black/70 backdrop-blur-xl border border-gray-800/70 hover:border-blue-500/50 transition-all duration-300 hover:scale-110 hover:shadow-[0_8px_32px_0_rgba(37,99,235,0.3)] ${social.hoverColor}`}
                   >
                     <social.icon 
                       size={18} 
@@ -223,7 +223,7 @@ const HeroSection = ({ onSectionClick }) => {
                     />
                     
                     {/* Enhanced Tooltip */}
-                    <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 bg-black/90 backdrop-blur-xl text-white text-xs py-2 px-3 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none whitespace-nowrap border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)]">
+                    <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 bg-black/90 backdrop-blur-xl text-white text-xs py-2 px-3 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none whitespace-nowrap border border-gray-800/90 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)]">
                       <span className="font-medium">{social.name}</span>
                       <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-black/90"></div>
                     </div>

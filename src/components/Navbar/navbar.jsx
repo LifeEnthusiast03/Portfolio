@@ -30,7 +30,7 @@ function Navbar({ activeSection, onSectionClick }) {
     <nav className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-500 ease-out ${
       isNavVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
     } ${isScrolled ? 'scale-90' : 'scale-100'}`}>
-      <div className={`bg-black/60 backdrop-blur-2xl border border-white/10 rounded-full shadow-[0_8px_32px_0_rgba(59,130,246,0.2)] transition-all duration-500 ease-out ${
+      <div className={`bg-black/80 backdrop-blur-2xl border border-gray-800/80 rounded-full shadow-[0_8px_32px_0_rgba(37,99,235,0.25)] hover:border-blue-600/30 transition-all duration-500 ease-out ${
         isScrolled ? 'px-4 py-2' : 'px-6 py-3'
       }`}>
         <div className="flex justify-between items-center">
@@ -46,8 +46,8 @@ function Navbar({ activeSection, onSectionClick }) {
                   isScrolled ? 'px-2 py-1 text-sm' : 'px-3 py-1.5 text-base'
                 } ${
                   activeSection === section 
-                    ? 'text-white bg-gradient-to-r from-blue-500 to-purple-500 shadow-lg shadow-blue-500/30' 
-                    : 'text-gray-400 hover:text-white hover:bg-white/5'
+                    ? 'text-white bg-gradient-to-r from-blue-700 to-blue-600 shadow-lg shadow-blue-500/40' 
+                    : 'text-gray-400 hover:text-white hover:bg-gray-800/50 hover:shadow-[0_0_15px_rgba(37,99,235,0.2)]'
                 }`}
               >
                 {section}
@@ -69,7 +69,7 @@ function Navbar({ activeSection, onSectionClick }) {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className={`md:hidden mt-2 bg-black/60 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-[0_8px_32px_0_rgba(59,130,246,0.3)] overflow-hidden transition-all duration-300 ${
+        <div className={`md:hidden mt-2 bg-black/80 backdrop-blur-2xl border border-gray-800/80 rounded-2xl shadow-[0_8px_32px_0_rgba(37,99,235,0.3)] overflow-hidden transition-all duration-300 ${
           isScrolled ? 'scale-90' : 'scale-100'
         }`}>
           <div className="px-4 py-3 space-y-1">
@@ -81,8 +81,8 @@ function Navbar({ activeSection, onSectionClick }) {
                   isScrolled ? 'px-2 py-1.5 text-sm' : 'px-3 py-2 text-base'
                 } ${
                   activeSection === section
-                    ? 'text-white bg-gradient-to-r from-blue-500 to-purple-500 shadow-lg'
-                    : 'text-gray-400 hover:text-white hover:bg-white/5'
+                    ? 'text-white bg-gradient-to-r from-blue-700 to-blue-600 shadow-lg shadow-blue-500/40'
+                    : 'text-gray-400 hover:text-white hover:bg-gray-800/50'
                 }`}
               >
                 {section}

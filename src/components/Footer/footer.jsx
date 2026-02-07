@@ -44,7 +44,7 @@ const Footer = () => {
 
 
   return (
-    <footer className="bg-[#0a0a0a] border-t border-white/10 backdrop-blur-xl">
+    <footer className="bg-[#050505] border-t border-gray-800/70 backdrop-blur-xl">
       {/* Main Content */}
       <div className="max-w-6xl mx-auto px-4 py-8">
         <div className="grid md:grid-cols-3 gap-8">
@@ -65,7 +65,7 @@ const Footer = () => {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`text-gray-400 ${social.color} transition-colors duration-300 p-2 rounded-lg hover:bg-white/5`}
+                  className={`text-gray-400 ${social.color} transition-colors duration-300 p-2 rounded-lg hover:bg-gray-800/50 hover:border-violet-500/30`}
                   aria-label={social.name}
                 >
                   {social.icon}
@@ -84,7 +84,7 @@ const Footer = () => {
                 <li key={index}>
                   <a
                     href={`#${link}`}
-                    className="text-gray-400 hover:text-white transition-colors duration-300 text-sm"
+                    className="text-gray-400 hover:text-blue-300 transition-colors duration-300 text-sm"
                   >
                     {link}
                   </a>
@@ -103,7 +103,7 @@ const Footer = () => {
                 <li key={index}>
                   <a
                     href={info.href}
-                    className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center text-sm"
+                    className="text-gray-400 hover:text-blue-300 transition-colors duration-300 flex items-center text-sm"
                   >
                     <span className="mr-2">
                       {info.icon}
@@ -118,7 +118,7 @@ const Footer = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-white/10 bg-[#0a0a0a]">
+      <div className="border-t border-gray-800/70 bg-[#050505]">
         <div className="max-w-6xl mx-auto px-4 py-4">
           <div className="flex justify-center">
             {/* Copyright */}
