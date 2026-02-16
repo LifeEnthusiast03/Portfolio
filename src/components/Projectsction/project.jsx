@@ -15,9 +15,9 @@ const ProjectsSection = ({ isVisible = true }) => {
       technologies: ["Node.js", "Express", "Socket.io", "MongoDB", "React", "Socket.io-client"],
       category: "Full Stack",
       status: "In Progress",
-      github: "https://github.com",
-      live: "https://demo.com",
-      image: "/api/placeholder/600/400",
+      github: "https://github.com/LifeEnthusiast03/My_chat_app",
+      live: "https://github.com/LifeEnthusiast03/My_chat_app",
+      image: "/chat.png",
       features: ["Real-time Messaging", "Multiple Rooms", "File Sharing", "User Authentication"],
       stats: { stars: 32, forks: 12, views: 1800 },
       timeline: "4-6 weeks",
@@ -25,15 +25,15 @@ const ProjectsSection = ({ isVisible = true }) => {
     },
     {
       id: 2,
-      title: "AI-Powered Knowledge Base",
+      title: "Readwise",
       description: "An intelligent knowledge base with RAG implementation, vector search, real-time features, and enterprise-grade security for enhanced information retrieval.",
       longDescription: "Developing an advanced AI-powered knowledge management system with RAG implementation and vector search capabilities for efficient information retrieval.",
       technologies: ["React", "Node.js", "MongoDB", "Pinecone", "OpenAI API"],
       category: "Gen AI",
       status: "In Progress",
-      github: "https://github.com",
-      live: "https://demo.com",
-      image: "/api/placeholder/600/400",
+      github: "https://github.com/LifeEnthusiast03/rag_backend",
+      live: "https://readwise-virid.vercel.app/login",
+      image: "/readwise.png",
       features: ["RAG Implementation", "Vector Search", "Real-time Features", "Enterprise Security"],
       stats: { stars: 45, forks: 18, views: 2400 },
       timeline: "Ongoing",
@@ -47,9 +47,9 @@ const ProjectsSection = ({ isVisible = true }) => {
       technologies: ["React", "Material UI", "Chart.js", "React-Chartjs-2", "UUID"],
       category: "Frontend",
       status: "Completed",
-      github: "https://github.com",
-      live: "https://demo.com",
-      image: "/api/placeholder/600/400",
+      github: "https://github.com/LifeEnthusiast03/-Expense_Tracker",
+      live: "https://github.com/LifeEnthusiast03/-Expense_Tracker",
+      image: "/expense.png",
       features: ["Expense Tracking", "Charts & Analytics", "Dark Mode", "Voice Support (Coming Soon)"],
       stats: { stars: 28, forks: 9, views: 1600 }
     },
@@ -75,42 +75,7 @@ const ProjectsSection = ({ isVisible = true }) => {
         "Modern React Architecture"
       ],
       stats: { stars: 15, forks: 6, views: 950 }
-    },
-     {
-  id: 5,
-  title: "Blog App - Modern Blogging Platform",
-  description: "A fast and modern blog application built with TypeScript and React, featuring efficient data fetching with React Query and a clean UI using shadcn/ui.",
-  longDescription: "A full-featured blogging platform built with a modern frontend stack including Vite for fast performance, TypeScript for type safety, React Query for efficient server-state management, and shadcn/ui for a polished and accessible user interface. The app supports viewing, creating, and managing blog posts with a smooth and responsive user experience.",
-  technologies: [
-    "React",
-    "TypeScript",
-    "Vite",
-    "React Query",
-    "shadcn/ui",
-    "Tailwind CSS"
-  ],
-  category: "Frontend",
-  status: "Completed",
-  github: "https://github.com/LifeEnthusiast03/Frontend-Interview",   // update with your repo link
-  live: "https://blogcur.vercel.app/",           // update with live link
-  image: "/blogapp.png",
-  features: [
-    "Fast Performance with Vite",
-    "Type-safe Codebase using TypeScript",
-    "Efficient API Handling with React Query",
-    "Modern UI Components with shadcn/ui",
-    "Responsive Design",
-    "Blog Listing & Detail Pages",
-    "Loading & Error State Handling",
-    "Clean and Scalable Architecture"
-  ],
-  stats: {
-    stars: 0,
-    forks: 0,
-    views: 0
-  }
-}
-
+    }
   ];
 
   const categories = ["All", "Full Stack", "Frontend", "Gen AI"];
