@@ -47,13 +47,6 @@ const HeroSection = ({ onSectionClick }) => {
       hoverColor: "hover:from-blue-300 hover:to-blue-500"
     },
     {
-      name: "Instagram",
-      icon: Instagram,
-      url: "https://instagram.com/pet_pawli_cious",
-      color: "from-pink-400 to-purple-600",
-      hoverColor: "hover:from-pink-300 hover:to-purple-500"
-    },
-    {
       name: "Email",
       icon: Mail,
       url: "sahasougata820@gmail.com",
@@ -80,7 +73,7 @@ const HeroSection = ({ onSectionClick }) => {
  const handleDownloadCV = () => {
   const link = document.createElement('a');
   link.href = '/cv.pdf'; 
-  link.download = 'SOUGATA_SAHA_JU.pdf';
+  link.download = 'SOUGATA_SAHA.pdf';
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);

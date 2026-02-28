@@ -8,6 +8,7 @@ import SkillsSection from './components/Skillsection/skills';
 import EducationSection from './components/Educationsection/education';
 import ContactSection from './components/Contactsection/contact';
 import Footer from './components/Footer/footer';
+import ChatBot from './components/ChatBot/chatbot';
 
 export default function App() {
   const [activeSection, setActiveSection] = useState('Home');
@@ -83,6 +84,9 @@ export default function App() {
           <ArrowUp className="w-6 h-6 group-hover:-translate-y-1 transition-transform duration-300" />
         </button>
       )}
+
+      {/* ChatBot */}
+      <ChatBot />
     </div>
   );
 }
