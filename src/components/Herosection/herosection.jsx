@@ -72,8 +72,8 @@ const HeroSection = ({ onSectionClick }) => {
 
  const handleDownloadCV = () => {
   const link = document.createElement('a');
-  link.href = '/cv.pdf'; 
-  link.download = 'SOUGATA_SAHA.pdf';
+  link.href = '/Sougata_Saha.pdf'; 
+  link.download = 'Sougata_Saha.pdf';
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
