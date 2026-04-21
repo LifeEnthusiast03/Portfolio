@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Github, Linkedin, Instagram, Mail, Phone, MapPin, Heart } from 'lucide-react';
 
 const Footer = () => {
@@ -7,41 +7,46 @@ const Footer = () => {
       icon: <Github className="w-5 h-5" />,
       name: "GitHub",
       url: "https://github.com/LifeEnthusiast03",
-      color: "hover:text-gray-300"
+      color: "hover:text-gray-300",
     },
     {
       icon: <Linkedin className="w-5 h-5" />,
       name: "LinkedIn",
       url: "https://www.linkedin.com/in/sougatasaha/",
-      color: "hover:text-blue-400"
+      color: "hover:text-blue-400",
     },
     {
       icon: <Instagram className="w-5 h-5" />,
       name: "Instagram",
       url: "https://instagram.com/pet_pawli_cious",
-      color: "hover:text-pink-400"
-    }
+      color: "hover:text-pink-400",
+    },
   ];
 
   const contactInfo = [
     {
       icon: <Mail className="w-4 h-4" />,
-      text: "sahasougata@gmail.com",
-      href: "mailto:sahasougata@gmail.com"
+      text: "sahasougata820@gmail.com",
+      href: "mailto:sahasougata820@gmail.com",
     },
     {
       icon: <Phone className="w-4 h-4" />,
       text: "+91 6296824383",
-      href: "tel:+91 6296824383"
+      href: "tel:+916296824383",
     },
     {
       icon: <MapPin className="w-4 h-4" />,
       text: "Midnapore, West Bengal",
-      href: "#"
-    }
+      href: "#",
+    },
   ];
 
-
+  const quickLinks = [
+    { label: "Projects", path: "/projects" },
+    { label: "Skills", path: "/skills" },
+    { label: "Education", path: "/education" },
+    { label: "Contact", path: "/contact" },
+  ];
 
   return (
     <footer className="bg-[#050505] border-t border-gray-800/70 backdrop-blur-xl">
@@ -50,13 +55,15 @@ const Footer = () => {
         <div className="grid md:grid-cols-3 gap-8">
           {/* Brand Section */}
           <div>
-            <h3 className="text-xl font-bold text-white mb-3">
-              Sougata Saha
-            </h3>
+            <Link to="/" className="inline-block">
+              <h3 className="text-xl font-bold text-white mb-3 hover:text-blue-400 transition-colors">
+                Sougata Saha
+              </h3>
+            </Link>
             <p className="text-gray-400 text-sm mb-4">
               Full Stack Developer crafting digital experiences with passion and precision.
             </p>
-            
+
             {/* Social Links */}
             <div className="flex space-x-3">
               {socialLinks.map((social, index) => (
@@ -65,7 +72,7 @@ const Footer = () => {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`text-gray-400 ${social.color} transition-colors duration-300 p-2 rounded-lg hover:bg-gray-800/50 hover:border-violet-500/30`}
+                  className={`text-gray-400 ${social.color} transition-colors duration-300 p-2 rounded-lg hover:bg-gray-800/50`}
                   aria-label={social.name}
                 >
                   {social.icon}
@@ -76,18 +83,16 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold text-white mb-3">
-              Quick Links
-            </h4>
+            <h4 className="text-lg font-semibold text-white mb-3">Quick Links</h4>
             <ul className="space-y-2">
-              {["Projects", "Skills", "Education", "Contact"].map((link, index) => (
+              {quickLinks.map((link, index) => (
                 <li key={index}>
-                  <a
-                    href={`#${link}`}
+                  <Link
+                    to={link.path}
                     className="text-gray-400 hover:text-blue-300 transition-colors duration-300 text-sm"
                   >
-                    {link}
-                  </a>
+                    {link.label}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -95,9 +100,7 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-lg font-semibold text-white mb-3">
-              Contact
-            </h4>
+            <h4 className="text-lg font-semibold text-white mb-3">Contact</h4>
             <ul className="space-y-2">
               {contactInfo.map((info, index) => (
                 <li key={index}>
@@ -105,9 +108,7 @@ const Footer = () => {
                     href={info.href}
                     className="text-gray-400 hover:text-blue-300 transition-colors duration-300 flex items-center text-sm"
                   >
-                    <span className="mr-2">
-                      {info.icon}
-                    </span>
+                    <span className="mr-2">{info.icon}</span>
                     {info.text}
                   </a>
                 </li>
@@ -121,7 +122,6 @@ const Footer = () => {
       <div className="border-t border-gray-800/70 bg-[#050505]">
         <div className="max-w-6xl mx-auto px-4 py-4">
           <div className="flex justify-center">
-            {/* Copyright */}
             <div className="text-gray-400 text-sm flex items-center">
               <span>© 2025 Sougata Saha. Made with</span>
               <Heart className="w-4 h-4 mx-1 text-red-400 fill-current" />

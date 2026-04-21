@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { ChevronDown, Mail, Phone, MapPin, Github, Linkedin, Twitter, ExternalLink, Download, Menu, X, Code, Palette, Database, Globe, Star, GitBranch, Eye } from 'lucide-react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Github, ExternalLink, Star, GitBranch, Eye } from 'lucide-react';
 
-// Projects Component
-const ProjectsSection = ({ isVisible = true }) => {
-  const [activeProject, setActiveProject] = useState(0);
+const ProjectsSection = () => {
   const [hoveredProject, setHoveredProject] = useState(null);
 
   const projects = [
@@ -20,8 +19,6 @@ const ProjectsSection = ({ isVisible = true }) => {
       image: "/chat.png",
       features: ["Real-time Messaging", "Multiple Rooms", "File Sharing", "User Authentication"],
       stats: { stars: 32, forks: 12, views: 1800 },
-      timeline: "4-6 weeks",
-      commitment: "1-2 hours daily"
     },
     {
       id: 2,
@@ -36,8 +33,6 @@ const ProjectsSection = ({ isVisible = true }) => {
       image: "/readwise.png",
       features: ["RAG Implementation", "Vector Search", "Real-time Features", "Enterprise Security"],
       stats: { stars: 45, forks: 18, views: 2400 },
-      timeline: "Ongoing",
-      commitment: "2-3 hours daily"
     },
     {
       id: 3,
@@ -51,248 +46,231 @@ const ProjectsSection = ({ isVisible = true }) => {
       live: "https://github.com/LifeEnthusiast03/Spendwisee",
       image: "/spendwise.png",
       features: ["Expense Tracking", "Charts & Analytics", "Dark Mode", "Voice Support (Coming Soon)"],
-      stats: { stars: 28, forks: 9, views: 1600 }
+      stats: { stars: 28, forks: 9, views: 1600 },
     },
     {
       id: 4,
       title: "SkyFlect - Weather App",
       description: "A modern and responsive weather application built with React, featuring real-time weather data, dynamic backgrounds, and glassmorphism design.",
-      longDescription: "A sophisticated weather application showcasing advanced UI patterns with dynamic weather-based backgrounds, smooth animations, and a beautiful glassmorphism interface. Features real-time weather data with detailed metrics and responsive design across all devices.",
+      longDescription: "A sophisticated weather application showcasing advanced UI patterns with dynamic weather-based backgrounds, smooth animations, and a beautiful glassmorphism interface.",
       technologies: ["React", "JavaScript", "Tailwind CSS", "OpenWeather API", "Lucide React"],
       category: "Frontend",
       status: "Completed",
       github: "https://github.com/LifeEnthusiast03/weather_app",
       live: "https://skyflect.vercel.app/",
       image: "/skyfleat.png",
-      features: [
-        "Real-time Weather Data",
-        "Dynamic Weather Backgrounds", 
-        "Glassmorphism UI Design",
-        "Responsive Design",
-        "Location Search",
-        "Weather Animations",
-        "Detailed Weather Metrics",
-        "Modern React Architecture"
-      ],
-      stats: { stars: 15, forks: 6, views: 950 }
-    }
+      features: ["Real-time Weather Data", "Dynamic Weather Backgrounds", "Glassmorphism UI Design", "Responsive Design"],
+      stats: { stars: 15, forks: 6, views: 950 },
+    },
   ];
 
   const categories = ["All", "Full Stack", "Frontend", "Gen AI"];
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  const filteredProjects = selectedCategory === "All" 
-    ? projects 
-    : projects.filter(project => project.category === selectedCategory);
+  const filteredProjects =
+    selectedCategory === "All"
+      ? projects
+      : projects.filter((project) => project.category === selectedCategory);
 
   const getCategoryColor = (category) => {
     const colors = {
       "Full Stack": "bg-blue-500/20 text-blue-300 border-blue-500/30",
-      "Frontend": "bg-green-500/20 text-green-300 border-green-500/30",
+      Frontend: "bg-green-500/20 text-green-300 border-green-500/30",
       "Gen AI": "bg-purple-500/20 text-purple-300 border-purple-500/30",
-      "AI/ML": "bg-purple-500/20 text-purple-300 border-purple-500/30"
     };
     return colors[category] || "bg-gray-500/20 text-gray-300 border-gray-500/30";
   };
 
   const getStatusColor = (status) => {
     const statusColors = {
-      "Completed": "bg-green-500/20 text-green-300 border-green-500/30",
+      Completed: "bg-green-500/20 text-green-300 border-green-500/30",
       "In Progress": "bg-blue-500/20 text-blue-300 border-blue-500/30",
-      "Planning": "bg-yellow-500/20 text-yellow-300 border-yellow-500/30"
+      Planning: "bg-yellow-500/20 text-yellow-300 border-yellow-500/30",
     };
     return statusColors[status] || "bg-gray-500/20 text-gray-300 border-gray-500/30";
   };
 
   return (
-    <section id="Projects" className="min-h-screen py-20 px-4 bg-[#050505] relative">
+    <section className="min-h-screen py-28 px-4 bg-[#050505] relative">
       {/* Dotted Glow Background */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.12)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.08)_1px,transparent_1px)] bg-[size:60px_60px] animate-pulse" style={{animationDuration: '5s'}}></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-950/5 via-transparent to-blue-900/5"></div>
-        
-        {/* Ripple Effects */}
-        <div className="ripple top-1/3 right-1/4 w-40 h-40 bg-blue-500/10" style={{animationDelay: '0.5s'}}></div>
-        <div className="ripple bottom-1/3 left-1/3 w-36 h-36 bg-blue-600/10" style={{animationDelay: '2s'}}></div>
-        <div className="ripple top-2/3 left-2/3 w-32 h-32 bg-blue-700/10" style={{animationDelay: '3.5s'}}></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.12)_1px,transparent_1px)] bg-[size:40px_40px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.08)_1px,transparent_1px)] bg-[size:60px_60px] animate-pulse" style={{ animationDuration: "5s" }} />
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-950/5 via-transparent to-blue-900/5" />
+        <div className="ripple top-1/3 right-1/4 w-40 h-40 bg-blue-500/10" style={{ animationDelay: "0.5s" }} />
+        <div className="ripple bottom-1/3 left-1/3 w-36 h-36 bg-blue-600/10" style={{ animationDelay: "2s" }} />
+        <div className="ripple top-2/3 left-2/3 w-32 h-32 bg-blue-700/10" style={{ animationDelay: "3.5s" }} />
       </div>
-      
+
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
-        <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-blue-500 to-cyan-400 bg-clip-text text-transparent">
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-blue-500 to-cyan-400 bg-clip-text text-transparent">
             Featured Projects
-          </h2>
+          </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Showcasing my latest work in web development, mobile apps, and data science. 
+            Showcasing my latest work in web development, mobile apps, and data science.
             Each project represents a unique challenge and creative solution.
           </p>
-        </div>
+        </motion.div>
 
         {/* Category Filter */}
-        <div className={`flex flex-wrap justify-center gap-4 mb-12 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <motion.div
+          className="flex flex-wrap justify-center gap-4 mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.15 }}
+        >
           {categories.map((category) => (
             <button
               key={category}
               onClick={() => setSelectedCategory(category)}
               className={`px-6 py-3 rounded-full border transition-all duration-300 hover:scale-105 backdrop-blur-xl ${
                 selectedCategory === category
-                  ? 'bg-gradient-to-r from-blue-700 to-blue-600 text-white border-transparent shadow-[0_8px_32px_0_rgba(37,99,235,0.4)]'
-                  : 'bg-black/50 text-gray-300 border-gray-800 hover:bg-gray-800/50 hover:border-blue-600/30'
+                  ? "bg-gradient-to-r from-blue-700 to-blue-600 text-white border-transparent shadow-[0_8px_32px_0_rgba(37,99,235,0.4)]"
+                  : "bg-black/50 text-gray-300 border-gray-800 hover:bg-gray-800/50 hover:border-blue-600/30"
               }`}
             >
               {category}
             </button>
           ))}
-        </div>
+        </motion.div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {filteredProjects.map((project, index) => (
-            <div
-              key={project.id}
-              className={`group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-gray-800/80 hover:border-blue-500/40 transition-all duration-500 hover:shadow-[0_8px_60px_0_rgba(37,99,235,0.3)] hover:scale-[1.02] ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-              }`}
-              style={{ transitionDelay: `${index * 100}ms` }}
-              onMouseEnter={() => setHoveredProject(project.id)}
-              onMouseLeave={() => setHoveredProject(null)}
-            >
-              {/* Project Image */}
-              <div className="relative h-40 overflow-hidden">
-                {/* Actual Image */}
-                <img 
-                  src={project.image} 
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
-                  onError={(e) => {
-                    // Fallback to gradient background if image fails to load
-                    e.target.style.display = 'none';
-                  }}
-                />
-                
-                {/* Fallback gradient background */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-blue-800/20"></div>
-                
-                {/* Dark overlay for better text readability */}
-                <div className="absolute inset-0 bg-black/30"></div>
-                
-                {/* Status Badge */}
-                <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-sm font-medium border backdrop-blur-sm ${getStatusColor(project.status)}`}>
-                  {project.status}
-                </div>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={selectedCategory}
+            className="grid grid-cols-1 lg:grid-cols-2 gap-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.4 }}
+          >
+            {filteredProjects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-gray-800/80 hover:border-blue-500/40 transition-all duration-500 hover:shadow-[0_8px_60px_0_rgba(37,99,235,0.3)] hover:scale-[1.02]"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                onMouseEnter={() => setHoveredProject(project.id)}
+                onMouseLeave={() => setHoveredProject(null)}
+              >
+                {/* Project Image */}
+                <div className="relative h-40 overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
+                    onError={(e) => { e.target.style.display = "none"; }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-blue-800/20" />
+                  <div className="absolute inset-0 bg-black/30" />
 
-                {/* Category Badge */}
-                <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-sm font-medium border backdrop-blur-sm ${getCategoryColor(project.category)}`}>
-                  {project.category}
-                </div>
+                  {/* Status Badge */}
+                  <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-sm font-medium border backdrop-blur-sm ${getStatusColor(project.status)}`}>
+                    {project.status}
+                  </div>
 
-                {/* Hover Overlay */}
-                <div className={`absolute inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center gap-4 transition-all duration-300 ${
-                  hoveredProject === project.id ? 'opacity-100' : 'opacity-0'
-                }`}>
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-3 bg-black/50 backdrop-blur-xl rounded-full hover:bg-black/70 transition-all duration-300 hover:scale-110 border border-gray-800/50 hover:border-blue-500/50"
-                  >
-                    <Github className="w-6 h-6" />
-                  </a>
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-3 bg-black/50 backdrop-blur-xl rounded-full hover:bg-black/70 transition-all duration-300 hover:scale-110 border border-gray-800/50 hover:border-blue-500/50"
-                  >
-                    <ExternalLink className="w-6 h-6" />
-                  </a>
-                </div>
-              </div>
+                  {/* Category Badge */}
+                  <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-sm font-medium border backdrop-blur-sm ${getCategoryColor(project.category)}`}>
+                    {project.category}
+                  </div>
 
-              {/* Project Content */}
-              <div className="p-5">
-                <div className="flex items-start justify-between mb-3">
-                  <h3 className="text-xl font-bold text-white group-hover:text-blue-300 transition-colors duration-300">
-                    {project.title}
-                  </h3>
-                  <div className="flex items-center gap-4 text-sm text-gray-400">
-                    <div className="flex items-center gap-1">
-                      <Star className="w-4 h-4" />
-                      {project.stats.stars}
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <GitBranch className="w-4 h-4" />
-                      {project.stats.forks}
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Eye className="w-4 h-4" />
-                      {project.stats.views}
-                    </div>
+                  {/* Hover Overlay */}
+                  <div className={`absolute inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center gap-4 transition-all duration-300 ${hoveredProject === project.id ? "opacity-100" : "opacity-0"}`}>
+                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="p-3 bg-black/50 backdrop-blur-xl rounded-full hover:bg-black/70 transition-all duration-300 hover:scale-110 border border-gray-800/50 hover:border-blue-500/50">
+                      <Github className="w-6 h-6" />
+                    </a>
+                    <a href={project.live} target="_blank" rel="noopener noreferrer" className="p-3 bg-black/50 backdrop-blur-xl rounded-full hover:bg-black/70 transition-all duration-300 hover:scale-110 border border-gray-800/50 hover:border-blue-500/50">
+                      <ExternalLink className="w-6 h-6" />
+                    </a>
                   </div>
                 </div>
 
-                <p className="text-gray-300 mb-4 leading-relaxed text-sm">
-                  {project.description}
-                </p>
-
-                {/* Technologies */}
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.technologies.map((tech, techIndex) => (
-                    <span
-                      key={techIndex}
-                      className="px-3 py-1 bg-black/50 text-gray-300 rounded-full text-sm border border-gray-800/50 hover:bg-gray-800/50 hover:border-blue-500/30 transition-colors duration-300"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Features */}
-                <div className="mb-4">
-                  <h4 className="text-xs font-semibold text-gray-400 mb-2">Key Features:</h4>
-                  <div className="grid grid-cols-2 gap-1.5">
-                    {project.features.map((feature, featureIndex) => (
-                      <div key={featureIndex} className="flex items-center gap-2 text-xs text-gray-300">
-                        <div className="w-1.5 h-1.5 bg-blue-400 rounded-full"></div>
-                        {feature}
+                {/* Project Content */}
+                <div className="p-5">
+                  <div className="flex items-start justify-between mb-3">
+                    <h3 className="text-xl font-bold text-white group-hover:text-blue-300 transition-colors duration-300">
+                      {project.title}
+                    </h3>
+                    <div className="flex items-center gap-4 text-sm text-gray-400">
+                      <div className="flex items-center gap-1">
+                        <Star className="w-4 h-4" />
+                        {project.stats.stars}
                       </div>
+                      <div className="flex items-center gap-1">
+                        <GitBranch className="w-4 h-4" />
+                        {project.stats.forks}
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Eye className="w-4 h-4" />
+                        {project.stats.views}
+                      </div>
+                    </div>
+                  </div>
+
+                  <p className="text-gray-300 mb-4 leading-relaxed text-sm">
+                    {project.description}
+                  </p>
+
+                  {/* Technologies */}
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.technologies.map((tech, techIndex) => (
+                      <span
+                        key={techIndex}
+                        className="px-3 py-1 bg-black/50 text-gray-300 rounded-full text-sm border border-gray-800/50 hover:bg-gray-800/50 hover:border-blue-500/30 transition-colors duration-300"
+                      >
+                        {tech}
+                      </span>
                     ))}
                   </div>
-                </div>
 
-                {/* Action Buttons */}
-                <div className="flex gap-3">
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center gap-2 px-3 py-2.5 bg-black/50 hover:bg-gray-800/50 rounded-lg transition-all duration-300 hover:shadow-[0_8px_32px_0_rgba(37,99,235,0.2)] border border-gray-800/50 hover:border-blue-500/30 text-sm"
-                  >
-                    <Github className="w-4 h-4" />
-                    <span>Code</span>
-                  </a>
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center gap-2 px-3 py-2.5 bg-gradient-to-r from-blue-700/20 to-blue-800/20 hover:from-blue-700/30 hover:to-blue-800/30 rounded-lg transition-all duration-300 hover:shadow-[0_8px_32px_0_rgba(37,99,235,0.3)] border border-blue-500/30 hover:border-blue-400/50 text-sm"
-                  >
-                    <ExternalLink className="w-4 h-4" />
-                    <span>Live Demo</span>
-                  </a>
+                  {/* Features */}
+                  <div className="mb-4">
+                    <h4 className="text-xs font-semibold text-gray-400 mb-2">Key Features:</h4>
+                    <div className="grid grid-cols-2 gap-1.5">
+                      {project.features.map((feature, featureIndex) => (
+                        <div key={featureIndex} className="flex items-center gap-2 text-xs text-gray-300">
+                          <div className="w-1.5 h-1.5 bg-blue-400 rounded-full" />
+                          {feature}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="flex gap-3">
+                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-2 px-3 py-2.5 bg-black/50 hover:bg-gray-800/50 rounded-lg transition-all duration-300 hover:shadow-[0_8px_32px_0_rgba(37,99,235,0.2)] border border-gray-800/50 hover:border-blue-500/30 text-sm">
+                      <Github className="w-4 h-4" />
+                      <span>Code</span>
+                    </a>
+                    <a href={project.live} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-2 px-3 py-2.5 bg-gradient-to-r from-blue-700/20 to-blue-800/20 hover:from-blue-700/30 hover:to-blue-800/30 rounded-lg transition-all duration-300 hover:shadow-[0_8px_32px_0_rgba(37,99,235,0.3)] border border-blue-500/30 hover:border-blue-400/50 text-sm">
+                      <ExternalLink className="w-4 h-4" />
+                      <span>Live Demo</span>
+                    </a>
+                  </div>
                 </div>
-              </div>
-            </div>
-          ))}
-        </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
 
         {/* Bottom CTA */}
-        <div className={`text-center mt-16 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <motion.div
+          className="text-center mt-16"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+        >
           <p className="text-gray-400 mb-6">Want to see more of my work?</p>
           <a
-            href="https://github.com"
+            href="https://github.com/LifeEnthusiast03"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-700 to-blue-600 hover:from-blue-600 hover:to-blue-800 rounded-lg font-semibold transition-all duration-300 hover:shadow-[0_8px_32px_0_rgba(37,99,235,0.4)] hover:scale-105"
@@ -300,7 +278,7 @@ const ProjectsSection = ({ isVisible = true }) => {
             <Github className="w-5 h-5" />
             View All Projects on GitHub
           </a>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

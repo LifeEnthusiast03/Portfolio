@@ -1,96 +1,109 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
-// Navbar Component
-function Navbar({ activeSection, onSectionClick }) {
+const navItems = [
+  { path: '/', label: 'Home' },
+  { path: '/projects', label: 'Projects' },
+  { path: '/skills', label: 'Skills' },
+  { path: '/education', label: 'Education' },
+  { path: '/contact', label: 'Contact' },
+];
+
+function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isNavVisible, setIsNavVisible] = useState(true);
-  const [isScrolled, setIsScrolled] = useState(false);
 
-  const handleSectionClick = (sectionId) => {
-    onSectionClick(sectionId);
-    setIsMenuOpen(false);
-  };
-
+  // Close mobile menu on resize
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const heroSection = document.getElementById('Home');
-      const heroHeight = heroSection ? heroSection.offsetHeight : 800;
-      
-      // Check if user has scrolled past the hero section
-      setIsScrolled(scrollY > heroHeight * 0.3);
+    const handleResize = () => {
+      if (window.innerWidth >= 768) setIsMenuOpen(false);
     };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   return (
-    <nav className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-500 ease-out ${
-      isNavVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
-    } ${isScrolled ? 'scale-90' : 'scale-100'}`}>
-      <div className={`bg-black/80 backdrop-blur-2xl border border-gray-800/80 rounded-full shadow-[0_8px_32px_0_rgba(37,99,235,0.25)] hover:border-blue-600/30 transition-all duration-500 ease-out ${
-        isScrolled ? 'px-4 py-2' : 'px-6 py-3'
-      }`}>
-        <div className="flex justify-between items-center">
+    <nav className="fixed top-0 left-0 right-0 z-50 py-3">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6">
+        <div className="flex items-center justify-between rounded-full border bg-black/70 backdrop-blur-2xl border-gray-800/60 shadow-[0_4px_24px_0_rgba(0,0,0,0.5)] px-6 py-2">
 
-          
+          {/* Logo / Brand */}
+          <NavLink
+            to="/"
+            className="group flex items-center gap-2.5"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            <span className="text-xl font-bold tracking-tight" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+              <span className="bg-gradient-to-r from-blue-400 via-blue-500 to-cyan-400 bg-clip-text text-transparent">&lt;</span>
+              <span className="text-white">S</span>
+              <span className="text-gray-400">S</span>
+              <span className="bg-gradient-to-r from-blue-400 via-blue-500 to-cyan-400 bg-clip-text text-transparent">/&gt;</span>
+            </span>
+            <span className="hidden sm:block text-[15px] font-semibold tracking-tight" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+              <span className="text-white">Sougata</span>
+              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent"> Saha</span>
+            </span>
+          </NavLink>
+
           {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-6">
-            {['Home', 'Projects', 'Skills', 'Education', 'Contact'].map((section) => (
-              <button
-                key={section}
-                onClick={() => handleSectionClick(section)}
-                className={`capitalize transition-all duration-300 font-medium rounded-full ${
-                  isScrolled ? 'px-2 py-1 text-sm' : 'px-3 py-1.5 text-base'
-                } ${
-                  activeSection === section 
-                    ? 'text-white bg-gradient-to-r from-blue-700 to-blue-600 shadow-lg shadow-blue-500/40' 
-                    : 'text-gray-400 hover:text-white hover:bg-gray-800/50 hover:shadow-[0_0_15px_rgba(37,99,235,0.2)]'
-                }`}
+          <div className="hidden md:flex items-center gap-1">
+            {navItems.map((item) => (
+              <NavLink
+                key={item.path}
+                to={item.path}
+                end={item.path === '/'}
+                className={({ isActive }) =>
+                  `relative px-3.5 py-1.5 text-[13px] font-medium rounded-full transition-all duration-300 ${
+                    isActive
+                      ? 'text-white bg-gradient-to-r from-blue-600 to-blue-500 shadow-md shadow-blue-500/25'
+                      : 'text-gray-400 hover:text-white hover:bg-white/5'
+                  }`
+                }
               >
-                {section}
-              </button>
+                {item.label}
+              </NavLink>
             ))}
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className={`md:hidden text-white hover:text-blue-400 transition-all duration-300 ${
-              isScrolled ? 'p-1.5' : 'p-2'
-            }`}
+            className="md:hidden text-white hover:text-blue-400 transition-colors duration-300 p-2 rounded-lg hover:bg-white/5"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle navigation menu"
+            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+            id="mobile-menu-toggle"
           >
-            {isMenuOpen ? <X size={isScrolled ? 18 : 20} /> : <Menu size={isScrolled ? 18 : 20} />}
+            {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
-      </div>
 
-      {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div className={`md:hidden mt-2 bg-black/80 backdrop-blur-2xl border border-gray-800/80 rounded-2xl shadow-[0_8px_32px_0_rgba(37,99,235,0.3)] overflow-hidden transition-all duration-300 ${
-          isScrolled ? 'scale-90' : 'scale-100'
-        }`}>
-          <div className="px-4 py-3 space-y-1">
-            {['Home', 'Projects', 'Skills', 'Education', 'Contact'].map((section) => (
-              <button
-                key={section}
-                onClick={() => handleSectionClick(section)}
-                className={`block w-full text-left rounded-lg capitalize transition-all duration-200 ${
-                  isScrolled ? 'px-2 py-1.5 text-sm' : 'px-3 py-2 text-base'
-                } ${
-                  activeSection === section
-                    ? 'text-white bg-gradient-to-r from-blue-700 to-blue-600 shadow-lg shadow-blue-500/40'
-                    : 'text-gray-400 hover:text-white hover:bg-gray-800/50'
-                }`}
+        {/* Mobile Menu */}
+        <div
+          className={`md:hidden overflow-hidden transition-all duration-400 ease-out ${
+            isMenuOpen ? 'max-h-80 opacity-100 mt-2' : 'max-h-0 opacity-0 mt-0'
+          }`}
+        >
+          <div className="bg-black/80 backdrop-blur-2xl border border-gray-800/60 rounded-2xl px-3 py-2 shadow-[0_16px_48px_0_rgba(0,0,0,0.5)]">
+            {navItems.map((item) => (
+              <NavLink
+                key={item.path}
+                to={item.path}
+                end={item.path === '/'}
+                onClick={() => setIsMenuOpen(false)}
+                className={({ isActive }) =>
+                  `block w-full text-left rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200 ${
+                    isActive
+                      ? 'text-white bg-gradient-to-r from-blue-600 to-blue-500 shadow-lg shadow-blue-500/30'
+                      : 'text-gray-400 hover:text-white hover:bg-white/5'
+                  }`
+                }
               >
-                {section}
-              </button>
+                {item.label}
+              </NavLink>
             ))}
           </div>
         </div>
-      )}
+      </div>
     </nav>
   );
 }

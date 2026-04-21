@@ -7,8 +7,8 @@ export default function ChatBot() {
     {
       type: 'bot',
       text: 'Hi! 👋 I\'m here to answer questions about me. Feel free to ask anything!',
-      timestamp: new Date()
-    }
+      timestamp: new Date(),
+    },
   ]);
   const [inputValue, setInputValue] = useState('');
   const messagesEndRef = useRef(null);
@@ -21,79 +21,74 @@ export default function ChatBot() {
     scrollToBottom();
   }, [messages]);
 
-  // Sample Q&A knowledge base - customize this with your information
+  // Sample Q&A knowledge base
   const knowledgeBase = {
-    'skills': {
+    skills: {
       keywords: ['skill', 'technology', 'tech stack', 'programming', 'languages', 'what can you do', 'expertise'],
-      response: 'I have expertise in various technologies including React, JavaScript, Tailwind CSS, and modern web development. Check out the Skills section to see my complete tech stack!'
+      response: 'I have expertise in various technologies including React, JavaScript, Tailwind CSS, and modern web development. Check out the Skills page to see my complete tech stack!',
     },
-    'projects': {
+    projects: {
       keywords: ['project', 'work', 'portfolio', 'built', 'created', 'developed', 'showcase'],
-      response: 'I\'ve worked on several exciting projects showcasing my development skills. You can explore them in detail in the Projects section of my portfolio!'
+      response: 'I\'ve worked on several exciting projects showcasing my development skills. You can explore them in detail on the Projects page!',
     },
-    'education': {
+    education: {
       keywords: ['education', 'study', 'degree', 'university', 'college', 'school', 'learn'],
-      response: 'You can find information about my educational background in the Education section. I\'m passionate about continuous learning and self-improvement!'
+      response: 'You can find information about my educational background on the Education page. I\'m passionate about continuous learning and self-improvement!',
     },
-    'contact': {
+    contact: {
       keywords: ['contact', 'reach', 'email', 'hire', 'available', 'connect', 'get in touch'],
-      response: 'I\'d love to hear from you! You can reach me through the Contact section at the bottom of the page. Feel free to send me a message!'
+      response: 'I\'d love to hear from you! Head over to the Contact page to send me a message!',
     },
-    'experience': {
+    experience: {
       keywords: ['experience', 'work experience', 'job', 'career', 'background'],
-      response: 'I have experience in web development and creating modern, responsive applications. Check out my Projects section to see examples of my work!'
+      response: 'I have experience in web development and creating modern, responsive applications. Check out my Projects page to see examples of my work!',
     },
-    'about': {
+    about: {
       keywords: ['about', 'who are you', 'tell me', 'yourself', 'introduce'],
-      response: 'I\'m a passionate developer focused on creating beautiful and functional web applications. Explore my portfolio to learn more about my work and skills!'
+      response: 'I\'m a passionate developer focused on creating beautiful and functional web applications. Explore my portfolio to learn more about my work and skills!',
     },
-    'hobby': {
+    hobby: {
       keywords: ['hobby', 'hobbies', 'interest', 'free time', 'fun', 'like to do'],
-      response: 'When I\'m not coding, I enjoy exploring new technologies, working on side projects, and staying up to date with the latest web development trends!'
-    }
+      response: 'When I\'m not coding, I enjoy exploring new technologies, working on side projects, and staying up to date with the latest web development trends!',
+    },
   };
 
   const getBotResponse = (userMessage) => {
     const lowerMessage = userMessage.toLowerCase();
-    
-    // Check for greetings
+
     if (lowerMessage.match(/^(hi|hello|hey|greetings|good morning|good evening)/i)) {
       return 'Hello! 👋 How can I help you today? Feel free to ask about my skills, projects, education, or how to contact me!';
     }
 
-    // Check knowledge base
-    for (const [category, data] of Object.entries(knowledgeBase)) {
-      if (data.keywords.some(keyword => lowerMessage.includes(keyword))) {
+    for (const [, data] of Object.entries(knowledgeBase)) {
+      if (data.keywords.some((keyword) => lowerMessage.includes(keyword))) {
         return data.response;
       }
     }
 
-    // Default response
-    return 'That\'s an interesting question! You can explore different sections of my portfolio to learn more about me. Try asking about my skills, projects, education, or how to contact me!';
+    return 'That\'s an interesting question! You can explore different pages of my portfolio to learn more about me. Try asking about my skills, projects, education, or how to contact me!';
   };
 
   const handleSendMessage = () => {
     if (!inputValue.trim()) return;
 
-    // Add user message
     const userMessage = {
       type: 'user',
       text: inputValue,
-      timestamp: new Date()
+      timestamp: new Date(),
     };
-    setMessages(prev => [...prev, userMessage]);
-    
+    setMessages((prev) => [...prev, userMessage]);
+
     const currentInput = inputValue;
     setInputValue('');
 
-    // Add bot response after a short delay
     setTimeout(() => {
       const botResponse = {
         type: 'bot',
         text: getBotResponse(currentInput),
-        timestamp: new Date()
+        timestamp: new Date(),
       };
-      setMessages(prev => [...prev, botResponse]);
+      setMessages((prev) => [...prev, botResponse]);
     }, 500);
   };
 
@@ -109,10 +104,9 @@ export default function ChatBot() {
       {/* Chat Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`fixed bottom-8 left-8 z-50 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white p-4 rounded-full shadow-[0_8px_32px_0_rgba(147,51,234,0.4)] transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 group backdrop-blur-xl border border-purple-500/30 ${
-          isOpen ? 'rotate-0' : ''
-        }`}
+        className="fixed bottom-8 left-8 z-50 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white p-4 rounded-full shadow-[0_8px_32px_0_rgba(147,51,234,0.4)] transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 group backdrop-blur-xl border border-purple-500/30"
         aria-label="Open chat"
+        id="chatbot-toggle"
       >
         {isOpen ? (
           <X className="w-6 h-6 transition-transform duration-300" />
@@ -127,7 +121,7 @@ export default function ChatBot() {
           {/* Chat Header */}
           <div className="bg-gradient-to-r from-purple-600 to-blue-600 px-6 py-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+              <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse" />
               <div>
                 <h3 className="font-semibold text-white">Ask Me Anything</h3>
                 <p className="text-xs text-purple-100">Online</p>
@@ -136,7 +130,7 @@ export default function ChatBot() {
           </div>
 
           {/* Messages Container */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent">
+          <div className="flex-1 overflow-y-auto p-4 space-y-4">
             {messages.map((message, index) => (
               <div
                 key={index}
@@ -166,14 +160,16 @@ export default function ChatBot() {
                 type="text"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                onKeyPress={handleKeyPress}
+                onKeyDown={handleKeyPress}
                 placeholder="Type your question..."
                 className="flex-1 bg-gray-800 text-white px-4 py-3 rounded-xl border border-gray-700 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/30 transition-all"
+                id="chatbot-input"
               />
               <button
                 onClick={handleSendMessage}
                 className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white p-3 rounded-xl transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
                 disabled={!inputValue.trim()}
+                id="chatbot-send"
               >
                 <Send className="w-5 h-5" />
               </button>
@@ -181,23 +177,6 @@ export default function ChatBot() {
           </div>
         </div>
       )}
-
-      {/* Animation styles */}
-      <style jsx>{`
-        @keyframes slideUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .animate-slideUp {
-          animation: slideUp 0.3s ease-out;
-        }
-      `}</style>
     </>
   );
 }

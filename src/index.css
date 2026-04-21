@@ -50,20 +50,18 @@ html {
   animation: ripple 4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
 }
 
-/* Custom cursor */
-.custom-cursor {
-  position: fixed;
-  pointer-events: none;
-  z-index: 9999;
-  mix-blend-mode: difference;
-}
-
-@keyframes cursorPulse {
-  0%, 100% {
-    transform: translate(-50%, -50%) scale(1);
+/* ChatBot slide-up animation */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  50% {
-    transform: translate(-50%, -50%) scale(1.2);
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
+.animate-slideUp {
+  animation: slideUp 0.3s ease-out;
+}
