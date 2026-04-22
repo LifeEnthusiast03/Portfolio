@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, MessageCircle, User, FileText, ArrowRight, CheckCircle, Globe, Code, Coffee, Star } from 'lucide-react';
+import { Mail, MapPin, Send, MessageCircle, User, FileText, ArrowRight, CheckCircle, Globe, Code, Coffee, Star } from 'lucide-react';
+import Particles from '../Particles';
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -23,15 +24,7 @@ const ContactSection = () => {
       gradient: "from-blue-600 to-cyan-600",
       hoverGradient: "from-blue-500 to-cyan-500",
     },
-    {
-      icon: <Phone className="w-5 h-5" />,
-      title: "Phone",
-      subtitle: "Let's have a chat",
-      value: "+91 6296824383",
-      link: "tel:+91-6296824383",
-      gradient: "from-indigo-600 to-purple-600",
-      hoverGradient: "from-indigo-500 to-purple-500",
-    },
+
     {
       icon: <MapPin className="w-5 h-5" />,
       title: "Location",
@@ -60,22 +53,15 @@ const ContactSection = () => {
   };
 
   return (
-    <section className="min-h-screen py-28 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-[#050505]">
-      {/* Dotted Glow Background */}
+    <section className="min-h-screen py-28 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-[#030712]">
+      {/* Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.15)_1px,transparent_1px)] bg-[size:32px_32px]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.1)_1px,transparent_1px)] bg-[size:52px_52px] animate-pulse" style={{ animationDuration: "4.5s" }} />
-        <div className="absolute top-20 left-20 w-96 h-96 bg-blue-500/3 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-20 w-80 h-80 bg-blue-600/3 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "3s" }} />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-blue-700/2 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "6s" }} />
-        <div className="ripple top-1/4 right-1/3 w-40 h-40 bg-blue-500/12" style={{ animationDelay: "0s" }} />
-        <div className="ripple bottom-1/3 left-1/4 w-48 h-48 bg-blue-600/10" style={{ animationDelay: "1.5s" }} />
-        <div className="ripple top-2/3 right-1/2 w-36 h-36 bg-blue-700/12" style={{ animationDelay: "3s" }} />
-        <div className="absolute top-1/4 left-1/3 w-2 h-2 bg-blue-400/30 rounded-full animate-ping" style={{ animationDelay: "2s" }} />
-        <div className="absolute top-3/4 right-1/4 w-2 h-2 bg-cyan-400/30 rounded-full animate-ping" style={{ animationDelay: "4s" }} />
-        <div className="absolute bottom-1/3 left-1/4 w-2 h-2 bg-purple-400/30 rounded-full animate-ping" style={{ animationDelay: "6s" }} />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.04)_1px,transparent_1px)] bg-[size:44px_44px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(37,99,235,0.08),transparent)]" />
+        <div className="pointer-events-none absolute top-1/4 -left-32 w-96 h-96 rounded-full bg-blue-600/8 blur-[120px]" />
+        <div className="pointer-events-none absolute bottom-1/3 -right-32 w-96 h-96 rounded-full bg-violet-600/8 blur-[120px]" />
       </div>
-
+      <Particles />
       <div className="max-w-6xl mx-auto w-full relative z-10">
         {/* Header */}
         <div className="text-center mb-12">

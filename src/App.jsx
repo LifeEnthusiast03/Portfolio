@@ -7,6 +7,7 @@ import ProjectsSection from './components/Projectsction/project';
 import SkillsSection from './components/Skillsection/skills';
 import EducationSection from './components/Educationsection/education';
 import ContactSection from './components/Contactsection/contact';
+import BlogSection from './components/Blogsection/blog';
 import Footer from './components/Footer/footer';
 import ChatBot from './components/ChatBot/chatbot';
 import ScrollToTop from './components/ScrollToTop';
@@ -16,7 +17,7 @@ export default function App() {
   const location = useLocation();
 
   return (
-    <div className="min-h-screen bg-[#050505] text-white">
+    <div className="min-h-screen bg-[#030712] text-white">
       <Navbar />
       <ScrollToTop />
 
@@ -59,6 +60,14 @@ export default function App() {
             element={
               <PageTransition>
                 <ContactSection />
+              </PageTransition>
+            }
+          />
+          <Route
+            path="/blogs"
+            element={
+              <PageTransition>
+                <BlogSection />
               </PageTransition>
             }
           />

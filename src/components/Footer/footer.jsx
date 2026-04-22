@@ -1,137 +1,45 @@
-import { Link } from 'react-router-dom';
-import { Github, Linkedin, Instagram, Mail, Phone, MapPin, Heart } from 'lucide-react';
+import { Github, Linkedin, Mail, Heart } from 'lucide-react';
+import { SiLeetcode, SiGeeksforgeeks, SiCodeforces } from 'react-icons/si';
 
-const Footer = () => {
-  const socialLinks = [
-    {
-      icon: <Github className="w-5 h-5" />,
-      name: "GitHub",
-      url: "https://github.com/LifeEnthusiast03",
-      color: "hover:text-gray-300",
-    },
-    {
-      icon: <Linkedin className="w-5 h-5" />,
-      name: "LinkedIn",
-      url: "https://www.linkedin.com/in/sougatasaha/",
-      color: "hover:text-blue-400",
-    },
-    {
-      icon: <Instagram className="w-5 h-5" />,
-      name: "Instagram",
-      url: "https://instagram.com/pet_pawli_cious",
-      color: "hover:text-pink-400",
-    },
-  ];
+const SOCIAL = [
+  { name: "GitHub",      icon: Github,         url: "https://github.com/LifeEnthusiast03",                color: "hover:text-white" },
+  { name: "LinkedIn",   icon: Linkedin,        url: "https://www.linkedin.com/in/sougatasaha/",           color: "hover:text-blue-400" },
+  { name: "LeetCode",   icon: SiLeetcode,      url: "https://leetcode.com/u/sougata820/",                 color: "hover:text-orange-400" },
+  { name: "GFG",        icon: SiGeeksforgeeks, url: "https://www.geeksforgeeks.org/profile/sahasoug21zk", color: "hover:text-green-400" },
+  { name: "Codeforces", icon: SiCodeforces,    url: "https://codeforces.com/profile/Sougatasaha",         color: "hover:text-sky-400" },
+  { name: "Email",      icon: Mail,            url: "mailto:sahasougata820@gmail.com",                    color: "hover:text-cyan-400" },
+];
 
-  const contactInfo = [
-    {
-      icon: <Mail className="w-4 h-4" />,
-      text: "sahasougata820@gmail.com",
-      href: "mailto:sahasougata820@gmail.com",
-    },
-    {
-      icon: <Phone className="w-4 h-4" />,
-      text: "+91 6296824383",
-      href: "tel:+916296824383",
-    },
-    {
-      icon: <MapPin className="w-4 h-4" />,
-      text: "Midnapore, West Bengal",
-      href: "#",
-    },
-  ];
+const Footer = () => (
+  <footer className="bg-[#030712] border-t border-gray-800/40">
+    <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
 
-  const quickLinks = [
-    { label: "Projects", path: "/projects" },
-    { label: "Skills", path: "/skills" },
-    { label: "Education", path: "/education" },
-    { label: "Contact", path: "/contact" },
-  ];
+      {/* Copyright */}
+      <p className="text-gray-600 text-xs flex items-center gap-1.5 order-2 sm:order-1">
+        © {new Date().getFullYear()} Sougata Saha · Made with
+        <Heart size={11} className="text-red-500 fill-red-500" />
+        and code
+      </p>
 
-  return (
-    <footer className="bg-[#050505] border-t border-gray-800/70 backdrop-blur-xl">
-      {/* Main Content */}
-      <div className="max-w-6xl mx-auto px-4 py-8">
-        <div className="grid md:grid-cols-3 gap-8">
-          {/* Brand Section */}
-          <div>
-            <Link to="/" className="inline-block">
-              <h3 className="text-xl font-bold text-white mb-3 hover:text-blue-400 transition-colors">
-                Sougata Saha
-              </h3>
-            </Link>
-            <p className="text-gray-400 text-sm mb-4">
-              Full Stack Developer crafting digital experiences with passion and precision.
-            </p>
-
-            {/* Social Links */}
-            <div className="flex space-x-3">
-              {socialLinks.map((social, index) => (
-                <a
-                  key={index}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`text-gray-400 ${social.color} transition-colors duration-300 p-2 rounded-lg hover:bg-gray-800/50`}
-                  aria-label={social.name}
-                >
-                  {social.icon}
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h4 className="text-lg font-semibold text-white mb-3">Quick Links</h4>
-            <ul className="space-y-2">
-              {quickLinks.map((link, index) => (
-                <li key={index}>
-                  <Link
-                    to={link.path}
-                    className="text-gray-400 hover:text-blue-300 transition-colors duration-300 text-sm"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact Info */}
-          <div>
-            <h4 className="text-lg font-semibold text-white mb-3">Contact</h4>
-            <ul className="space-y-2">
-              {contactInfo.map((info, index) => (
-                <li key={index}>
-                  <a
-                    href={info.href}
-                    className="text-gray-400 hover:text-blue-300 transition-colors duration-300 flex items-center text-sm"
-                  >
-                    <span className="mr-2">{info.icon}</span>
-                    {info.text}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+      {/* Social icons */}
+      <div className="flex items-center gap-1 order-1 sm:order-2">
+        {SOCIAL.map(s => (
+          <a
+            key={s.name}
+            href={s.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={s.name}
+            title={s.name}
+            className={`p-2 rounded-lg text-gray-600 transition-colors duration-200 hover:bg-gray-800/40 ${s.color}`}
+          >
+            <s.icon size={14} />
+          </a>
+        ))}
       </div>
 
-      {/* Bottom Bar */}
-      <div className="border-t border-gray-800/70 bg-[#050505]">
-        <div className="max-w-6xl mx-auto px-4 py-4">
-          <div className="flex justify-center">
-            <div className="text-gray-400 text-sm flex items-center">
-              <span>© 2025 Sougata Saha. Made with</span>
-              <Heart className="w-4 h-4 mx-1 text-red-400 fill-current" />
-              <span>and code</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-};
+    </div>
+  </footer>
+);
 
 export default Footer;

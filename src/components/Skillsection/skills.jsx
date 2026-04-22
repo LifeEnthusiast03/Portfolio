@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Code, Palette, Database, Globe, Terminal, GitBranch, Monitor, Star, Zap, Award, Target, Package, Wifi, TestTube, Server, Folder, Github, Rocket, Paintbrush, Layout, Smartphone, Brain, Link2, Container, Cpu, Network, FileText, Box, Layers } from 'lucide-react';
+import Particles from '../Particles';
 
 const SkillsSection = () => {
   const [activeCategory, setActiveCategory] = useState(0);
@@ -134,16 +135,15 @@ const SkillsSection = () => {
   );
 
   return (
-    <section className="min-h-screen py-28 px-4 sm:px-6 lg:px-8 bg-[#050505] relative">
-      {/* Dotted Glow Background */}
+    <section className="min-h-screen py-28 px-4 sm:px-6 lg:px-8 bg-[#030712] relative">
+      {/* Background */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.12)_1px,transparent_1px)] bg-[size:35px_35px]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.08)_1px,transparent_1px)] bg-[size:55px_55px] animate-pulse" style={{ animationDuration: "6s" }} />
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-950/5 via-transparent to-blue-900/5" />
-        <div className="ripple top-1/4 left-1/3 w-44 h-44 bg-blue-600/10" style={{ animationDelay: "0s" }} />
-        <div className="ripple bottom-1/3 right-1/4 w-32 h-32 bg-blue-500/10" style={{ animationDelay: "1.8s" }} />
-        <div className="ripple top-1/2 left-2/3 w-36 h-36 bg-blue-700/10" style={{ animationDelay: "3.2s" }} />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.04)_1px,transparent_1px)] bg-[size:44px_44px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(37,99,235,0.08),transparent)]" />
+        <div className="pointer-events-none absolute top-1/4 -left-32 w-96 h-96 rounded-full bg-blue-600/8 blur-[120px]" />
+        <div className="pointer-events-none absolute bottom-1/3 -right-32 w-96 h-96 rounded-full bg-violet-600/8 blur-[120px]" />
       </div>
+      <Particles />
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}

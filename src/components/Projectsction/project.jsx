@@ -1,284 +1,260 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Github, ExternalLink, Star, GitBranch, Eye } from 'lucide-react';
+import { Github, ExternalLink, ArrowUpRight } from 'lucide-react';
+import Particles from '../Particles';
+
+const projects = [
+  {
+    id: 1,
+    title: "Real-Time Chat App",
+    description: "Full-stack chat platform with real-time messaging, multiple rooms, file sharing, and JWT authentication.",
+    technologies: ["Node.js", "Socket.io", "MongoDB", "React", "Express"],
+    category: "Full Stack",
+    status: "In Progress",
+    github: "https://github.com/LifeEnthusiast03/My_chat_app",
+    live: "https://github.com/LifeEnthusiast03/My_chat_app",
+    image: "/chat.png",
+    emoji: "🗨️",
+    accent: "blue",
+  },
+  {
+    id: 2,
+    title: "Readwise",
+    description: "AI-powered knowledge base with RAG pipeline, Pinecone vector search, and OpenAI for intelligent retrieval.",
+    technologies: ["React", "Node.js", "MongoDB", "Pinecone", "OpenAI API"],
+    category: ["Full Stack", "Gen AI"],
+    status: "In Progress",
+    github: "https://github.com/LifeEnthusiast03/rag_backend",
+    live: "https://readwise-virid.vercel.app/login",
+    image: "/readwise.png",
+    emoji: "📚",
+    accent: "violet",
+  },
+  {
+    id: 3,
+    title: "Spendwise",
+    description: "Expense tracker with budget goals, analytics dashboards, dark mode, and an Express + PostgreSQL backend.",
+    technologies: ["React", "Express", "PostgreSQL", "Prisma", "Chart.js"],
+    category: "Full Stack",
+    status: "Completed",
+    github: "https://github.com/LifeEnthusiast03/Spendwisee",
+    live: "https://spendwisee-beige.vercel.app/",
+    image: "/spendwise.png",
+    emoji: "💸",
+    accent: "emerald",
+  },
+  {
+    id: 4,
+    title: "SkyFlect",
+    description: "Weather app with real-time data, dynamic weather-based backgrounds, and a glassmorphism UI.",
+    technologies: ["React", "Tailwind CSS", "OpenWeather API", "JavaScript"],
+    category: "Frontend",
+    status: "Completed",
+    github: "https://github.com/LifeEnthusiast03/weather_app",
+    live: "https://skyflect.vercel.app/",
+    image: "/skyfleat.png",
+    emoji: "🌤️",
+    accent: "cyan",
+  },
+];
+
+const CATEGORIES = ["All", "Full Stack", "Frontend", "Gen AI"];
+
+const ACCENT = {
+  blue:    { border: "hover:border-blue-500/40",   glow: "hover:shadow-[0_0_32px_rgba(59,130,246,0.18)]",   badge: "bg-blue-500/15 text-blue-300 border-blue-500/25",   dot: "bg-blue-400" },
+  violet:  { border: "hover:border-violet-500/40", glow: "hover:shadow-[0_0_32px_rgba(139,92,246,0.18)]",  badge: "bg-violet-500/15 text-violet-300 border-violet-500/25", dot: "bg-violet-400" },
+  emerald: { border: "hover:border-emerald-500/40",glow: "hover:shadow-[0_0_32px_rgba(52,211,153,0.18)]",  badge: "bg-emerald-500/15 text-emerald-300 border-emerald-500/25", dot: "bg-emerald-400" },
+  cyan:    { border: "hover:border-cyan-500/40",   glow: "hover:shadow-[0_0_32px_rgba(34,211,238,0.18)]",   badge: "bg-cyan-500/15 text-cyan-300 border-cyan-500/25",     dot: "bg-cyan-400" },
+};
+
+const CAT_COLORS = {
+  "Full Stack": "bg-blue-500/15 text-blue-300 border-blue-500/25",
+  "Frontend":   "bg-green-500/15 text-green-300 border-green-500/25",
+  "Gen AI":     "bg-purple-500/15 text-purple-300 border-purple-500/25",
+};
+
+const STATUS_COLORS = {
+  "Completed":   "text-emerald-400",
+  "In Progress": "text-amber-400",
+};
 
 const ProjectsSection = () => {
-  const [hoveredProject, setHoveredProject] = useState(null);
-
-  const projects = [
-    {
-      id: 1,
-      title: "Real-Time Chat Application",
-      description: "A modern real-time chat application with authentication, multiple rooms, file sharing, and sleek UI built for seamless communication.",
-      longDescription: "Building a comprehensive chat platform with real-time messaging, user authentication, and file sharing capabilities using modern web technologies.",
-      technologies: ["Node.js", "Express", "Socket.io", "MongoDB", "React", "Socket.io-client"],
-      category: "Full Stack",
-      status: "In Progress",
-      github: "https://github.com/LifeEnthusiast03/My_chat_app",
-      live: "https://github.com/LifeEnthusiast03/My_chat_app",
-      image: "/chat.png",
-      features: ["Real-time Messaging", "Multiple Rooms", "File Sharing", "User Authentication"],
-      stats: { stars: 32, forks: 12, views: 1800 },
-    },
-    {
-      id: 2,
-      title: "Readwise",
-      description: "An intelligent knowledge base with RAG implementation, vector search, real-time features, and enterprise-grade security for enhanced information retrieval.",
-      longDescription: "Developing an advanced AI-powered knowledge management system with RAG implementation and vector search capabilities for efficient information retrieval.",
-      technologies: ["React", "Node.js", "MongoDB", "Pinecone", "OpenAI API"],
-      category: "Gen AI",
-      status: "In Progress",
-      github: "https://github.com/LifeEnthusiast03/rag_backend",
-      live: "https://readwise-virid.vercel.app/login",
-      image: "/readwise.png",
-      features: ["RAG Implementation", "Vector Search", "Real-time Features", "Enterprise Security"],
-      stats: { stars: 45, forks: 18, views: 2400 },
-    },
-    {
-      id: 3,
-      title: "Spendwise",
-      description: "A modern expense tracking application built with React and Material UI, featuring analytics, dark mode, and upcoming voice support for hands-free tracking.",
-      longDescription: "Built a comprehensive expense tracking solution with modern UI, data visualization, and upcoming voice recognition capabilities for enhanced user experience.",
-      technologies: ["React", "Material UI", "Chart.js", "React-Chartjs-2", "UUID"],
-      category: "Frontend",
-      status: "Completed",
-      github: "https://github.com/LifeEnthusiast03/Spendwisee",
-      live: "https://github.com/LifeEnthusiast03/Spendwisee",
-      image: "/spendwise.png",
-      features: ["Expense Tracking", "Charts & Analytics", "Dark Mode", "Voice Support (Coming Soon)"],
-      stats: { stars: 28, forks: 9, views: 1600 },
-    },
-    {
-      id: 4,
-      title: "SkyFlect - Weather App",
-      description: "A modern and responsive weather application built with React, featuring real-time weather data, dynamic backgrounds, and glassmorphism design.",
-      longDescription: "A sophisticated weather application showcasing advanced UI patterns with dynamic weather-based backgrounds, smooth animations, and a beautiful glassmorphism interface.",
-      technologies: ["React", "JavaScript", "Tailwind CSS", "OpenWeather API", "Lucide React"],
-      category: "Frontend",
-      status: "Completed",
-      github: "https://github.com/LifeEnthusiast03/weather_app",
-      live: "https://skyflect.vercel.app/",
-      image: "/skyfleat.png",
-      features: ["Real-time Weather Data", "Dynamic Weather Backgrounds", "Glassmorphism UI Design", "Responsive Design"],
-      stats: { stars: 15, forks: 6, views: 950 },
-    },
-  ];
-
-  const categories = ["All", "Full Stack", "Frontend", "Gen AI"];
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  const filteredProjects =
-    selectedCategory === "All"
-      ? projects
-      : projects.filter((project) => project.category === selectedCategory);
-
-  const getCategoryColor = (category) => {
-    const colors = {
-      "Full Stack": "bg-blue-500/20 text-blue-300 border-blue-500/30",
-      Frontend: "bg-green-500/20 text-green-300 border-green-500/30",
-      "Gen AI": "bg-purple-500/20 text-purple-300 border-purple-500/30",
-    };
-    return colors[category] || "bg-gray-500/20 text-gray-300 border-gray-500/30";
-  };
-
-  const getStatusColor = (status) => {
-    const statusColors = {
-      Completed: "bg-green-500/20 text-green-300 border-green-500/30",
-      "In Progress": "bg-blue-500/20 text-blue-300 border-blue-500/30",
-      Planning: "bg-yellow-500/20 text-yellow-300 border-yellow-500/30",
-    };
-    return statusColors[status] || "bg-gray-500/20 text-gray-300 border-gray-500/30";
-  };
+  const filtered = selectedCategory === "All"
+    ? projects
+    : projects.filter(p => {
+        const cats = Array.isArray(p.category) ? p.category : [p.category];
+        return cats.includes(selectedCategory);
+      });
 
   return (
-    <section className="min-h-screen py-28 px-4 bg-[#050505] relative">
-      {/* Dotted Glow Background */}
+    <section className="min-h-screen py-28 px-4 bg-[#030712] relative">
+      {/* Background */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.12)_1px,transparent_1px)] bg-[size:40px_40px]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.08)_1px,transparent_1px)] bg-[size:60px_60px] animate-pulse" style={{ animationDuration: "5s" }} />
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-950/5 via-transparent to-blue-900/5" />
-        <div className="ripple top-1/3 right-1/4 w-40 h-40 bg-blue-500/10" style={{ animationDelay: "0.5s" }} />
-        <div className="ripple bottom-1/3 left-1/3 w-36 h-36 bg-blue-600/10" style={{ animationDelay: "2s" }} />
-        <div className="ripple top-2/3 left-2/3 w-32 h-32 bg-blue-700/10" style={{ animationDelay: "3.5s" }} />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.04)_1px,transparent_1px)] bg-[size:44px_44px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(37,99,235,0.08),transparent)]" />
+        <div className="pointer-events-none absolute top-1/4 -left-32 w-96 h-96 rounded-full bg-blue-600/8 blur-[120px]" />
+        <div className="pointer-events-none absolute bottom-1/3 -right-32 w-96 h-96 rounded-full bg-violet-600/8 blur-[120px]" />
       </div>
+      <Particles />
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        {/* Header */}
+      <div className="max-w-6xl mx-auto relative z-10">
+
+        {/* ── Header ── */}
         <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.55 }}
         >
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-blue-500 to-cyan-400 bg-clip-text text-transparent">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-950/60 border border-blue-500/20 text-blue-400 text-xs font-mono tracking-widest mb-5 shadow-[0_0_30px_rgba(37,99,235,0.1)]">
+            <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
             Featured Projects
+          </div>
+          <h1 className="text-4xl sm:text-5xl font-black mb-3 bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent leading-tight">
+            Things I've Built
           </h1>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Showcasing my latest work in web development, mobile apps, and data science.
-            Each project represents a unique challenge and creative solution.
+          <p className="text-gray-500 text-base max-w-xl mx-auto">
+            A collection of projects spanning full-stack development, real-time systems, and GenAI.
           </p>
         </motion.div>
 
-        {/* Category Filter */}
+        {/* ── Filter ── */}
         <motion.div
-          className="flex flex-wrap justify-center gap-4 mb-12"
-          initial={{ opacity: 0, y: 20 }}
+          className="flex flex-wrap justify-center gap-2 mb-10"
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.15 }}
+          transition={{ duration: 0.5, delay: 0.12 }}
         >
-          {categories.map((category) => (
+          {CATEGORIES.map(cat => (
             <button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`px-6 py-3 rounded-full border transition-all duration-300 hover:scale-105 backdrop-blur-xl ${
-                selectedCategory === category
-                  ? "bg-gradient-to-r from-blue-700 to-blue-600 text-white border-transparent shadow-[0_8px_32px_0_rgba(37,99,235,0.4)]"
-                  : "bg-black/50 text-gray-300 border-gray-800 hover:bg-gray-800/50 hover:border-blue-600/30"
+              key={cat}
+              onClick={() => setSelectedCategory(cat)}
+              className={`px-4 py-1.5 rounded-lg text-sm font-medium border transition-all duration-250 ${
+                selectedCategory === cat
+                  ? "bg-blue-600 border-transparent text-white shadow-[0_0_20px_rgba(37,99,235,0.35)]"
+                  : "bg-black/40 border-gray-800 text-gray-400 hover:border-blue-500/30 hover:text-white backdrop-blur-xl"
               }`}
             >
-              {category}
+              {cat}
             </button>
           ))}
         </motion.div>
 
-        {/* Projects Grid */}
+        {/* ── Cards ── */}
         <AnimatePresence mode="wait">
           <motion.div
             key={selectedCategory}
-            className="grid grid-cols-1 lg:grid-cols-2 gap-6"
-            initial={{ opacity: 0, y: 20 }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4"
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.4 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.3 }}
           >
-            {filteredProjects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                className="group relative bg-black/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-gray-800/80 hover:border-blue-500/40 transition-all duration-500 hover:shadow-[0_8px_60px_0_rgba(37,99,235,0.3)] hover:scale-[1.02]"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                onMouseEnter={() => setHoveredProject(project.id)}
-                onMouseLeave={() => setHoveredProject(null)}
-              >
-                {/* Project Image */}
-                <div className="relative h-40 overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
-                    onError={(e) => { e.target.style.display = "none"; }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-blue-800/20" />
-                  <div className="absolute inset-0 bg-black/30" />
+            {filtered.map((project, i) => {
+              const a = ACCENT[project.accent];
+              const cats = Array.isArray(project.category) ? project.category : [project.category];
 
-                  {/* Status Badge */}
-                  <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-sm font-medium border backdrop-blur-sm ${getStatusColor(project.status)}`}>
-                    {project.status}
+              return (
+                <motion.div
+                  key={project.id}
+                  className={`group relative bg-black/40 backdrop-blur-xl rounded-xl border border-gray-800/70 overflow-hidden transition-all duration-300 ${a.border} ${a.glow}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.08, duration: 0.4 }}
+                >
+                  {/* Thumbnail */}
+                  <div className="relative h-32 overflow-hidden bg-gray-900">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      onError={e => { e.currentTarget.style.display = 'none'; e.currentTarget.nextSibling.style.display = 'flex'; }}
+                    />
+                    {/* Fallback gradient */}
+                    <div className={`absolute inset-0 hidden items-center justify-center text-4xl bg-gradient-to-br from-gray-900 to-gray-800`}>
+                      {project.emoji}
+                    </div>
+                    {/* Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                    {/* Category badges top-right */}
+                    <div className="absolute top-2.5 right-2.5 flex flex-col gap-1 items-end">
+                      {cats.map(cat => (
+                        <span key={cat} className={`text-[9px] font-semibold px-2 py-0.5 rounded-md border backdrop-blur-sm ${CAT_COLORS[cat] || 'bg-gray-800/70 text-gray-400 border-gray-700/40'}`}>
+                          {cat}
+                        </span>
+                      ))}
+                    </div>
+                    {/* Status bottom-left */}
+                    <span className={`absolute bottom-2 left-3 text-[10px] font-medium ${STATUS_COLORS[project.status] || 'text-gray-500'}`}>
+                      ● {project.status}
+                    </span>
                   </div>
-
-                  {/* Category Badge */}
-                  <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-sm font-medium border backdrop-blur-sm ${getCategoryColor(project.category)}`}>
-                    {project.category}
-                  </div>
-
-                  {/* Hover Overlay */}
-                  <div className={`absolute inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center gap-4 transition-all duration-300 ${hoveredProject === project.id ? "opacity-100" : "opacity-0"}`}>
-                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="p-3 bg-black/50 backdrop-blur-xl rounded-full hover:bg-black/70 transition-all duration-300 hover:scale-110 border border-gray-800/50 hover:border-blue-500/50">
-                      <Github className="w-6 h-6" />
-                    </a>
-                    <a href={project.live} target="_blank" rel="noopener noreferrer" className="p-3 bg-black/50 backdrop-blur-xl rounded-full hover:bg-black/70 transition-all duration-300 hover:scale-110 border border-gray-800/50 hover:border-blue-500/50">
-                      <ExternalLink className="w-6 h-6" />
-                    </a>
-                  </div>
-                </div>
-
-                {/* Project Content */}
-                <div className="p-5">
-                  <div className="flex items-start justify-between mb-3">
-                    <h3 className="text-xl font-bold text-white group-hover:text-blue-300 transition-colors duration-300">
-                      {project.title}
-                    </h3>
-                    <div className="flex items-center gap-4 text-sm text-gray-400">
-                      <div className="flex items-center gap-1">
-                        <Star className="w-4 h-4" />
-                        {project.stats.stars}
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <GitBranch className="w-4 h-4" />
-                        {project.stats.forks}
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Eye className="w-4 h-4" />
-                        {project.stats.views}
-                      </div>
+                  <div className="p-4">
+                  {/* Top row: title + links */}
+                  <div className="flex items-start justify-between gap-3 mb-2.5">
+                    <div className="flex items-center gap-2">
+                      <span className="text-lg leading-none">{project.emoji}</span>
+                      <h3 className="text-sm font-bold text-white group-hover:text-blue-300 transition-colors leading-tight">
+                        {project.title}
+                      </h3>
+                    </div>
+                    {/* Icon links */}
+                    <div className="flex items-center gap-1.5 shrink-0">
+                      <a href={project.github} target="_blank" rel="noopener noreferrer"
+                        className="p-1.5 rounded-lg border border-gray-700/60 text-gray-500 hover:text-white hover:border-gray-500 transition-all"
+                        title="View Code">
+                        <Github size={13} />
+                      </a>
+                      <a href={project.live} target="_blank" rel="noopener noreferrer"
+                        className="p-1.5 rounded-lg border border-gray-700/60 text-gray-500 hover:text-blue-400 hover:border-blue-500/40 transition-all"
+                        title="Live Demo">
+                        <ArrowUpRight size={13} />
+                      </a>
                     </div>
                   </div>
 
-                  <p className="text-gray-300 mb-4 leading-relaxed text-sm">
+                  {/* Description */}
+                  <p className="text-gray-500 text-xs leading-relaxed mb-3.5 line-clamp-2">
                     {project.description}
                   </p>
 
-                  {/* Technologies */}
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.technologies.map((tech, techIndex) => (
-                      <span
-                        key={techIndex}
-                        className="px-3 py-1 bg-black/50 text-gray-300 rounded-full text-sm border border-gray-800/50 hover:bg-gray-800/50 hover:border-blue-500/30 transition-colors duration-300"
-                      >
+                  {/* Tech pills */}
+                  <div className="flex flex-wrap gap-1.5 mb-3.5">
+                    {project.technologies.map(tech => (
+                      <span key={tech} className="text-[10px] text-gray-500 bg-gray-800/50 border border-gray-700/40 px-2 py-0.5 rounded-md">
                         {tech}
                       </span>
                     ))}
                   </div>
 
-                  {/* Features */}
-                  <div className="mb-4">
-                    <h4 className="text-xs font-semibold text-gray-400 mb-2">Key Features:</h4>
-                    <div className="grid grid-cols-2 gap-1.5">
-                      {project.features.map((feature, featureIndex) => (
-                        <div key={featureIndex} className="flex items-center gap-2 text-xs text-gray-300">
-                          <div className="w-1.5 h-1.5 bg-blue-400 rounded-full" />
-                          {feature}
-                        </div>
-                      ))}
-                    </div>
                   </div>
-
-                  {/* Action Buttons */}
-                  <div className="flex gap-3">
-                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-2 px-3 py-2.5 bg-black/50 hover:bg-gray-800/50 rounded-lg transition-all duration-300 hover:shadow-[0_8px_32px_0_rgba(37,99,235,0.2)] border border-gray-800/50 hover:border-blue-500/30 text-sm">
-                      <Github className="w-4 h-4" />
-                      <span>Code</span>
-                    </a>
-                    <a href={project.live} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-2 px-3 py-2.5 bg-gradient-to-r from-blue-700/20 to-blue-800/20 hover:from-blue-700/30 hover:to-blue-800/30 rounded-lg transition-all duration-300 hover:shadow-[0_8px_32px_0_rgba(37,99,235,0.3)] border border-blue-500/30 hover:border-blue-400/50 text-sm">
-                      <ExternalLink className="w-4 h-4" />
-                      <span>Live Demo</span>
-                    </a>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              );
+            })}
           </motion.div>
         </AnimatePresence>
 
-        {/* Bottom CTA */}
+        {/* ── GitHub CTA ── */}
         <motion.div
-          className="text-center mt-16"
-          initial={{ opacity: 0, y: 20 }}
+          className="text-center mt-12"
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
+          transition={{ duration: 0.5, delay: 0.45 }}
         >
-          <p className="text-gray-400 mb-6">Want to see more of my work?</p>
           <a
             href="https://github.com/LifeEnthusiast03"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-700 to-blue-600 hover:from-blue-600 hover:to-blue-800 rounded-lg font-semibold transition-all duration-300 hover:shadow-[0_8px_32px_0_rgba(37,99,235,0.4)] hover:scale-105"
+            className="inline-flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-blue-700 to-blue-600 hover:from-blue-600 hover:to-blue-500 text-white text-sm font-semibold rounded-xl transition-all duration-300 shadow-[0_0_24px_rgba(37,99,235,0.3)] hover:shadow-[0_0_36px_rgba(59,130,246,0.45)]"
           >
-            <Github className="w-5 h-5" />
-            View All Projects on GitHub
+            <Github size={15} />
+            View all on GitHub
+            <ExternalLink size={12} className="opacity-70" />
           </a>
         </motion.div>
+
       </div>
     </section>
   );

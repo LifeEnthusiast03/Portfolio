@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { GraduationCap, Calendar, MapPin, Award, BookOpen, FileText, TrendingUp, School } from 'lucide-react';
+import Particles from '../Particles';
 
 const EducationSection = () => {
   const [activeTab, setActiveTab] = useState('education');
@@ -12,8 +13,8 @@ const EducationSection = () => {
       institution: "Jadavpur University",
       location: "Salt Lake Bypass, Sector 3, Bidhannagar, Kolkata",
       duration: "2023 - 2027",
-      score: "SGPA: 8.44",
-      scoreDetail: "Up to 4th Semester",
+      score: "SGPA: 8.43",
+      scoreDetail: "Up to 5th Semester",
       type: "Pursuing",
       relevantCourses: [
         "Database Management Systems (DBMS)",
@@ -195,16 +196,15 @@ const EducationSection = () => {
   );
 
   return (
-    <section className="min-h-screen py-28 px-4 sm:px-6 lg:px-8 bg-[#050505] relative">
-      {/* Dotted Glow Background */}
+    <section className="min-h-screen py-28 px-4 sm:px-6 lg:px-8 bg-[#030712] relative">
+      {/* Background */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.12)_1px,transparent_1px)] bg-[size:38px_38px]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.08)_1px,transparent_1px)] bg-[size:58px_58px] animate-pulse" style={{ animationDuration: "5.5s" }} />
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-950/5 via-transparent to-blue-900/5" />
-        <div className="ripple top-1/3 left-1/4 w-40 h-40 bg-blue-500/10" style={{ animationDelay: "0.3s" }} />
-        <div className="ripple bottom-1/4 right-1/3 w-36 h-36 bg-blue-600/10" style={{ animationDelay: "2.2s" }} />
-        <div className="ripple top-2/3 right-2/3 w-32 h-32 bg-blue-700/10" style={{ animationDelay: "3.8s" }} />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.04)_1px,transparent_1px)] bg-[size:44px_44px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(37,99,235,0.08),transparent)]" />
+        <div className="pointer-events-none absolute top-1/4 -left-32 w-96 h-96 rounded-full bg-blue-600/8 blur-[120px]" />
+        <div className="pointer-events-none absolute bottom-1/3 -right-32 w-96 h-96 rounded-full bg-violet-600/8 blur-[120px]" />
       </div>
+      <Particles />
 
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Header */}
@@ -280,8 +280,8 @@ const EducationSection = () => {
         >
           <div className="inline-flex items-center space-x-8 bg-black/50 backdrop-blur-xl rounded-2xl px-8 py-4 border border-gray-800/80 hover:border-blue-500/30 transition-all duration-300">
             <div className="text-center">
-              <div className="text-2xl font-bold text-white">8.50</div>
-              <div className="text-sm text-gray-400">Current SGPA</div>
+              <div className="text-2xl font-bold text-white">8.43</div>
+              <div className="text-sm text-gray-400">SGPA (5th Sem)</div>
             </div>
             <div className="w-px h-8 bg-gray-700" />
             <div className="text-center">

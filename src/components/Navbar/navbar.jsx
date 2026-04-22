@@ -7,8 +7,10 @@ const navItems = [
   { path: '/projects', label: 'Projects' },
   { path: '/skills', label: 'Skills' },
   { path: '/education', label: 'Education' },
+  { path: '/blogs', label: 'Blogs' },
   { path: '/contact', label: 'Contact' },
 ];
+
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
