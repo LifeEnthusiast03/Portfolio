@@ -53,11 +53,9 @@ const ContactSection = () => {
   };
 
   return (
-    <section className="min-h-screen py-28 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-[#030712]">
+    <section className="min-h-screen py-28 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-transparent">
       {/* Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.04)_1px,transparent_1px)] bg-[size:44px_44px]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(37,99,235,0.08),transparent)]" />
         <div className="pointer-events-none absolute top-1/4 -left-32 w-96 h-96 rounded-full bg-blue-600/8 blur-[120px]" />
         <div className="pointer-events-none absolute bottom-1/3 -right-32 w-96 h-96 rounded-full bg-violet-600/8 blur-[120px]" />
       </div>

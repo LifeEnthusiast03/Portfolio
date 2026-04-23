@@ -13,7 +13,6 @@ const BLOGS = [
     id: 1,
     title: "Building a RAG Pipeline with LangChain and Pinecone",
     excerpt: "A deep-dive into retrieval-augmented generation — how to combine vector search with large language models to build intelligent, context-aware applications.",
-    content: "Full article coming soon...",
     tags: ["Gen AI", "LangChain", "Pinecone"],
     category: "Gen AI",
     date: "Apr 2025",
@@ -31,7 +30,6 @@ const BLOGS = [
     id: 2,
     title: "WebSockets vs Server-Sent Events: When to Use Which",
     excerpt: "A practical comparison of real-time communication protocols — exploring use cases, trade-offs, and implementation patterns for modern web applications.",
-    content: "Full article coming soon...",
     tags: ["Node.js", "WebSockets", "Backend"],
     category: "Backend",
     date: "Mar 2025",
@@ -49,7 +47,6 @@ const BLOGS = [
     id: 3,
     title: "Mastering React Performance: Memoization Deep Dive",
     excerpt: "Understanding useMemo, useCallback, and React.memo — when they help, when they hurt, and how to profile your app to make data-driven decisions.",
-    content: "Full article coming soon...",
     tags: ["React", "Performance", "Frontend"],
     category: "Frontend",
     date: "Feb 2025",
@@ -67,7 +64,6 @@ const BLOGS = [
     id: 4,
     title: "Designing a Scalable REST API with Express & PostgreSQL",
     excerpt: "From schema design to middleware patterns — a step-by-step walkthrough for building production-ready REST APIs with proper authentication and error handling.",
-    content: "Full article coming soon...",
     tags: ["Node.js", "PostgreSQL", "API"],
     category: "Backend",
     date: "Jan 2025",
@@ -85,7 +81,6 @@ const BLOGS = [
     id: 5,
     title: "Vector Databases Explained: Faiss vs Pinecone vs ChromaDB",
     excerpt: "A practical guide to understanding vector databases — comparing the top options for embedding storage and similarity search in production AI systems.",
-    content: "Full article coming soon...",
     tags: ["Gen AI", "Vector DB", "Machine Learning"],
     category: "Gen AI",
     date: "Dec 2024",
@@ -103,7 +98,6 @@ const BLOGS = [
     id: 6,
     title: "CSS Grid vs Flexbox: A Complete Visual Guide",
     excerpt: "Stop guessing which layout model to use. A visual, example-driven comparison of CSS Grid and Flexbox with real-world layout patterns.",
-    content: "Full article coming soon...",
     tags: ["CSS", "Frontend", "Design"],
     category: "Frontend",
     date: "Nov 2024",
@@ -143,16 +137,12 @@ const BlogSection = () => {
   const featured = BLOGS[0];
 
   return (
-    <section className="min-h-screen py-28 px-4 sm:px-6 lg:px-8 bg-[#030712] relative">
+    <section className="min-h-screen py-28 px-4 sm:px-6 lg:px-8 bg-transparent relative">
 
       {/* Background */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.04)_1px,transparent_1px)] bg-[size:44px_44px]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(37,99,235,0.08),transparent)]" />
-        <div className="pointer-events-none absolute top-1/4 -left-32 w-96 h-96 rounded-full bg-blue-600/8 blur-[120px]" />
-        <div className="pointer-events-none absolute bottom-1/3 -right-32 w-96 h-96 rounded-full bg-violet-600/8 blur-[120px]" />
+        <Particles />
       </div>
-      <Particles />
 
       <div className="max-w-7xl mx-auto relative z-10">
 

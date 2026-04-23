@@ -133,14 +133,10 @@ const HeroSection = () => {
   return (
     <>
       {/* ════════════════ HERO ════════════════ */}
-      <section id="hero" className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 overflow-hidden bg-[#030712] pt-24">
+      <section id="hero" className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 overflow-hidden bg-transparent pt-24">
 
         {/* — Layered background — */}
         <div className="absolute inset-0 z-0">
-          {/* fine grid */}
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.04)_1px,transparent_1px)] bg-[size:44px_44px]" />
-          {/* radial vignette */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(37,99,235,0.12),transparent)]" />
           {/* bottom fade */}
           <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#030712] to-transparent" />
         </div>
@@ -326,10 +322,7 @@ const HeroSection = () => {
       </section>
 
       {/* ════════════════ ABOUT ════════════════ */}
-      <section className="relative py-28 px-4 sm:px-6 bg-[#030712]">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.03)_1px,transparent_1px)] bg-[size:44px_44px]" />
-        </div>
+      <section className="relative py-28 px-4 sm:px-6 bg-transparent">
 
         <motion.div
           className="max-w-6xl mx-auto relative z-10"

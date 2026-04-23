@@ -17,12 +17,22 @@ export default function App() {
   const location = useLocation();
 
   return (
-    <div className="min-h-screen bg-[#030712] text-white">
-      <Navbar />
-      <ScrollToTop />
+    <div className="min-h-screen bg-[#030712] text-white relative">
+      {/* Global Background Grid */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        {/* fine grid */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.03)_1px,transparent_1px)] bg-[size:44px_44px]" />
+        {/* radial vignette */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(37,99,235,0.08),transparent)]" />
+      </div>
 
-      <AnimatePresence mode="wait">
-        <Routes location={location} key={location.pathname}>
+      <div className="relative z-10 flex flex-col min-h-screen">
+        <Navbar />
+        <ScrollToTop />
+
+        <main className="flex-grow">
+          <AnimatePresence mode="wait">
+            <Routes location={location} key={location.pathname}>
           <Route
             path="/"
             element={
@@ -72,10 +82,12 @@ export default function App() {
             }
           />
         </Routes>
-      </AnimatePresence>
+          </AnimatePresence>
+        </main>
 
-      <Footer />
-      <ChatBot />
+        <Footer />
+        <ChatBot />
+      </div>
     </div>
   );
 }
