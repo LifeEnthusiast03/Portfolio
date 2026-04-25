@@ -1,26 +1,37 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef } from 'react';
+
+interface Dot {
+  x: number;
+  y: number;
+  r: number;
+  vx: number;
+  vy: number;
+  a: number;
+}
 
 /**
  * Animated particle field — drifting dots with connecting lines.
  * Drop inside any section that has `position: relative` and `overflow: hidden`.
  */
 const Particles = () => {
-  const canvasRef = useRef(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
-    let raf;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    let raf: number;
 
     const resize = () => {
       canvas.width  = canvas.offsetWidth;
       canvas.height = canvas.offsetHeight;
     };
     resize();
-    window.addEventListener("resize", resize);
+    window.addEventListener('resize', resize);
 
     const count = 60;
-    const dots  = Array.from({ length: count }, () => ({
+    const dots: Dot[] = Array.from({ length: count }, () => ({
       x:  Math.random() * canvas.width,
       y:  Math.random() * canvas.height,
       r:  Math.random() * 1.2 + 0.3,
@@ -67,7 +78,7 @@ const Particles = () => {
     draw();
     return () => {
       cancelAnimationFrame(raf);
-      window.removeEventListener("resize", resize);
+      window.removeEventListener('resize', resize);
     };
   }, []);
 

@@ -12,12 +12,14 @@ import Footer from './components/Footer/footer';
 import ChatBot from './components/ChatBot/chatbot';
 import ScrollToTop from './components/ScrollToTop';
 import PageTransition from './components/PageTransition';
+import CustomCursor from './components/CustomCursor';
 
 export default function App() {
   const location = useLocation();
 
   return (
     <div className="min-h-screen bg-[#030712] text-white relative">
+      <CustomCursor />
       {/* Global Background Grid */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         {/* fine grid */}
@@ -33,55 +35,55 @@ export default function App() {
         <main className="flex-grow">
           <AnimatePresence mode="wait">
             <Routes location={location} key={location.pathname}>
-          <Route
-            path="/"
-            element={
-              <PageTransition>
-                <HeroSection />
-              </PageTransition>
-            }
-          />
-          <Route
-            path="/projects"
-            element={
-              <PageTransition>
-                <ProjectsSection />
-              </PageTransition>
-            }
-          />
-          <Route
-            path="/skills"
-            element={
-              <PageTransition>
-                <SkillsSection />
-              </PageTransition>
-            }
-          />
-          <Route
-            path="/education"
-            element={
-              <PageTransition>
-                <EducationSection />
-              </PageTransition>
-            }
-          />
-          <Route
-            path="/contact"
-            element={
-              <PageTransition>
-                <ContactSection />
-              </PageTransition>
-            }
-          />
-          <Route
-            path="/blogs"
-            element={
-              <PageTransition>
-                <BlogSection />
-              </PageTransition>
-            }
-          />
-        </Routes>
+              <Route
+                path="/"
+                element={
+                  <PageTransition>
+                    <HeroSection />
+                  </PageTransition>
+                }
+              />
+              <Route
+                path="/projects"
+                element={
+                  <PageTransition>
+                    <ProjectsSection />
+                  </PageTransition>
+                }
+              />
+              <Route
+                path="/skills"
+                element={
+                  <PageTransition>
+                    <SkillsSection />
+                  </PageTransition>
+                }
+              />
+              <Route
+                path="/education"
+                element={
+                  <PageTransition>
+                    <EducationSection />
+                  </PageTransition>
+                }
+              />
+              <Route
+                path="/contact"
+                element={
+                  <PageTransition>
+                    <ContactSection />
+                  </PageTransition>
+                }
+              />
+              <Route
+                path="/blogs"
+                element={
+                  <PageTransition>
+                    <BlogSection />
+                  </PageTransition>
+                }
+              />
+            </Routes>
           </AnimatePresence>
         </main>
 

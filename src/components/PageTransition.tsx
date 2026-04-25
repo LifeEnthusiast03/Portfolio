@@ -1,6 +1,7 @@
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
+import { ReactNode } from 'react';
 
-const pageVariants = {
+const pageVariants: Variants = {
   initial: {
     opacity: 0,
     y: 24,
@@ -12,7 +13,7 @@ const pageVariants = {
     filter: 'blur(0px)',
     transition: {
       duration: 0.5,
-      ease: [0.25, 0.46, 0.45, 0.94],
+      ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number],
     },
   },
   exit: {
@@ -21,12 +22,16 @@ const pageVariants = {
     filter: 'blur(4px)',
     transition: {
       duration: 0.3,
-      ease: [0.25, 0.46, 0.45, 0.94],
+      ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number],
     },
   },
 };
 
-export default function PageTransition({ children }) {
+interface PageTransitionProps {
+  children: ReactNode;
+}
+
+export default function PageTransition({ children }: PageTransitionProps) {
   return (
     <motion.div
       variants={pageVariants}

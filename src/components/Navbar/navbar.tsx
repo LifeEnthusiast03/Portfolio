@@ -2,7 +2,12 @@ import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
-const navItems = [
+interface NavItem {
+  path: string;
+  label: string;
+}
+
+const navItems: NavItem[] = [
   { path: '/', label: 'Home' },
   { path: '/projects', label: 'Projects' },
   { path: '/skills', label: 'Skills' },
@@ -10,7 +15,6 @@ const navItems = [
   { path: '/blogs', label: 'Blogs' },
   { path: '/contact', label: 'Contact' },
 ];
-
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

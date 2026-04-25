@@ -3,59 +3,102 @@ import { motion } from 'framer-motion';
 import { GraduationCap, Calendar, MapPin, Award, BookOpen, FileText, TrendingUp, School } from 'lucide-react';
 import Particles from '../Particles';
 
-const EducationSection = () => {
-  const [activeTab, setActiveTab] = useState('education');
+interface EducationEntry {
+  degree: string;
+  field: string;
+  institution: string;
+  location: string;
+  duration: string;
+  score: string;
+  scoreDetail: string;
+  type: 'Pursuing' | 'Completed';
+  relevantCourses: string[];
+  icon: React.ReactElement;
+  gradient: string;
+}
 
-  const educationData = [
+interface Certification {
+  title: string;
+  platform: string;
+  issuer: string;
+  completionDate: string;
+  credentialId: string;
+  skills: string[];
+  icon: React.ReactElement;
+  gradient: string;
+}
+
+interface TabButtonProps {
+  id: string;
+  label: string;
+  count: number;
+  isActive: boolean;
+  onClick: (id: string) => void;
+}
+
+interface EducationCardProps {
+  education: EducationEntry;
+  index: number;
+}
+
+interface CertificationCardProps {
+  certification: Certification;
+  index: number;
+}
+
+const EducationSection = () => {
+  const [activeTab, setActiveTab] = useState<'education' | 'certifications'>('education');
+
+  const educationData: EducationEntry[] = [
     {
-      degree: "Bachelor of Engineering",
-      field: "Information Technology",
-      institution: "Jadavpur University",
-      location: "Salt Lake Bypass, Sector 3, Bidhannagar, Kolkata",
-      duration: "2023 - 2027",
-      score: "SGPA: 8.43",
-      scoreDetail: "Up to 5th Semester",
-      type: "Pursuing",
+      degree: 'Bachelor of Engineering',
+      field: 'Information Technology',
+      institution: 'Jadavpur University',
+      location: 'Salt Lake Bypass, Sector 3, Bidhannagar, Kolkata',
+      duration: '2023 - 2027',
+      score: 'SGPA: 8.43',
+      scoreDetail: 'Up to 5th Semester',
+      type: 'Pursuing',
       relevantCourses: [
-        "Database Management Systems (DBMS)",
-        "Data Structures and Algorithms (DSA)",
-        "Object-Oriented Programming (OOP)",
-        "Computer Networks (CN)",
-        "Software Engineering",
-        "Object-Oriented Systems (OOS)",
+        'Database Management Systems (DBMS)',
+        'Data Structures and Algorithms (DSA)',
+        'Object-Oriented Programming (OOP)',
+        'Computer Networks (CN)',
+        'Software Engineering',
+        'Object-Oriented Systems (OOS)',
       ],
       icon: <GraduationCap className="w-6 h-6" />,
-      gradient: "from-blue-500 to-indigo-600",
+      gradient: 'from-blue-500 to-indigo-600',
     },
     {
-      degree: "Higher Secondary Education",
-      field: "Class 12",
-      institution: "Ramakrishna Mission VidyaBhawan",
-      location: "Midnapore",
-      duration: "2020 - 2022",
-      score: "95.00%",
-      scoreDetail: "Percentage",
-      type: "Completed",
-      relevantCourses: ["Physics", "Chemistry", "Mathematics"],
+      degree: 'Higher Secondary Education',
+      field: 'Class 12',
+      institution: 'Ramakrishna Mission VidyaBhawan',
+      location: 'Midnapore',
+      duration: '2020 - 2022',
+      score: '95.00%',
+      scoreDetail: 'Percentage',
+      type: 'Completed',
+      relevantCourses: ['Physics', 'Chemistry', 'Mathematics'],
       icon: <School className="w-6 h-6" />,
-      gradient: "from-green-500 to-teal-600",
+      gradient: 'from-green-500 to-teal-600',
     },
   ];
 
-  const certificationData = [
+  const certificationData: Certification[] = [
     {
-      title: "Data Structures and Algorithms",
-      platform: "Udemy",
-      issuer: "Udemy",
-      completionDate: "2024",
-      credentialId: "UC-XXXXXXXX",
-      skills: ["DSA", "Problem Solving", "Algorithms", "Data Structures"],
+      title: 'Data Structures and Algorithms',
+      platform: 'Udemy',
+      issuer: 'Udemy',
+      completionDate: '2024',
+      credentialId: 'UC-XXXXXXXX',
+      skills: ['DSA', 'Problem Solving', 'Algorithms', 'Data Structures'],
       icon: <FileText className="w-6 h-6" />,
-      gradient: "from-purple-500 to-pink-600",
+      gradient: 'from-purple-500 to-pink-600',
     },
   ];
 
-  const TabButton = ({ id, label, count, isActive, onClick }) => (
+  const TabButton = ({ id, label, count, isActive, onClick }: TabButtonProps) => (
     <button
       onClick={() => onClick(id)}
       className={`relative px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
@@ -73,14 +116,13 @@ const EducationSection = () => {
     </button>
   );
 
-  const EducationCard = ({ education, index }) => (
+  const EducationCard = ({ education, index }: EducationCardProps) => (
     <motion.div
       className="group relative bg-black/40 backdrop-blur-sm rounded-2xl p-6 border border-gray-800/80 hover:border-blue-500/40 transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_8px_32px_0_rgba(37,99,235,0.3)]"
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.15 }}
     >
-      {/* Status Badge */}
       <div className="absolute top-4 right-4">
         <div className={`px-3 py-1 rounded-full text-xs font-semibold ${
           education.type === 'Pursuing'
@@ -90,8 +132,6 @@ const EducationSection = () => {
           {education.type}
         </div>
       </div>
-
-      {/* Header */}
       <div className="flex items-start mb-6">
         <div className={`p-3 bg-gradient-to-r ${education.gradient} bg-opacity-20 rounded-xl mr-4 group-hover:scale-110 transition-transform duration-300`}>
           {education.icon}
@@ -104,8 +144,6 @@ const EducationSection = () => {
           <p className="text-blue-400 font-medium">{education.institution}</p>
         </div>
       </div>
-
-      {/* Details Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
         <div className="flex items-center text-gray-400">
           <Calendar className="w-4 h-4 mr-2 text-blue-400" />
@@ -121,8 +159,6 @@ const EducationSection = () => {
           <span className="text-gray-400 ml-2">({education.scoreDetail})</span>
         </div>
       </div>
-
-      {/* Courses */}
       <div>
         <h4 className="text-sm font-semibold text-gray-300 mb-3 flex items-center">
           <BookOpen className="w-4 h-4 mr-2" />
@@ -142,14 +178,13 @@ const EducationSection = () => {
     </motion.div>
   );
 
-  const CertificationCard = ({ certification, index }) => (
+  const CertificationCard = ({ certification, index }: CertificationCardProps) => (
     <motion.div
       className="group relative bg-black/40 backdrop-blur-sm rounded-2xl p-6 border border-gray-800/80 hover:border-blue-500/40 transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_8px_32px_0_rgba(37,99,235,0.3)]"
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.15 }}
     >
-      {/* Header */}
       <div className="flex items-start mb-6">
         <div className={`p-3 bg-gradient-to-r ${certification.gradient} bg-opacity-20 rounded-xl mr-4 group-hover:scale-110 transition-transform duration-300`}>
           {certification.icon}
@@ -162,8 +197,6 @@ const EducationSection = () => {
           <p className="text-purple-400 font-medium">{certification.issuer}</p>
         </div>
       </div>
-
-      {/* Details */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
         <div className="flex items-center text-gray-400">
           <Calendar className="w-4 h-4 mr-2 text-blue-400" />
@@ -174,8 +207,6 @@ const EducationSection = () => {
           <span className="text-sm">{certification.credentialId}</span>
         </div>
       </div>
-
-      {/* Skills */}
       <div>
         <h4 className="text-sm font-semibold text-gray-300 mb-3 flex items-center">
           <TrendingUp className="w-4 h-4 mr-2" />
@@ -196,8 +227,7 @@ const EducationSection = () => {
   );
 
   return (
-    <section className="min-h-screen py-28 px-4 sm:px-6 lg:px-8 bg-transparent relative">
-      {/* Background */}
+    <section className="h-auto py-28 px-4 sm:px-6 lg:px-8 bg-transparent relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         <div className="pointer-events-none absolute top-1/4 -left-32 w-96 h-96 rounded-full bg-blue-600/8 blur-[120px]" />
         <div className="pointer-events-none absolute bottom-1/3 -right-32 w-96 h-96 rounded-full bg-violet-600/8 blur-[120px]" />
@@ -205,52 +235,31 @@ const EducationSection = () => {
       <Particles />
 
       <div className="max-w-6xl mx-auto relative z-10">
-        {/* Header */}
         <div className="text-center mb-12">
           <motion.h1
             className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
           >
-            Education & Certifications
+            Education &amp; Certifications
           </motion.h1>
           <motion.p
             className="text-lg text-gray-400 max-w-3xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.15 }}
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.15 }}
           >
             Academic achievements and professional certifications that shape my technical expertise
           </motion.p>
         </div>
 
-        {/* Tabs */}
         <motion.div
           className="flex justify-center mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.25 }}
+          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.25 }}
         >
           <div className="bg-black/50 backdrop-blur-xl rounded-xl p-1 border border-gray-800/80">
-            <TabButton
-              id="education"
-              label="Education"
-              count={educationData.length}
-              isActive={activeTab === 'education'}
-              onClick={setActiveTab}
-            />
-            <TabButton
-              id="certifications"
-              label="Certifications"
-              count={certificationData.length}
-              isActive={activeTab === 'certifications'}
-              onClick={setActiveTab}
-            />
+            <TabButton id="education" label="Education" count={educationData.length} isActive={activeTab === 'education'} onClick={(id) => setActiveTab(id as 'education' | 'certifications')} />
+            <TabButton id="certifications" label="Certifications" count={certificationData.length} isActive={activeTab === 'certifications'} onClick={(id) => setActiveTab(id as 'education' | 'certifications')} />
           </div>
         </motion.div>
 
-        {/* Content */}
         <div className="space-y-6">
           {activeTab === 'education' && (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -259,7 +268,6 @@ const EducationSection = () => {
               ))}
             </div>
           )}
-
           {activeTab === 'certifications' && (
             <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
               {certificationData.map((certification, index) => (
@@ -269,12 +277,9 @@ const EducationSection = () => {
           )}
         </div>
 
-        {/* Stats */}
         <motion.div
           className="mt-12 text-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
+          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.5 }}
         >
           <div className="inline-flex items-center space-x-8 bg-black/50 backdrop-blur-xl rounded-2xl px-8 py-4 border border-gray-800/80 hover:border-blue-500/30 transition-all duration-300">
             <div className="text-center">
