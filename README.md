@@ -1,8 +1,9 @@
 # 🚀 Sougata Saha — Personal Portfolio
 
-A modern, cinematic personal portfolio website built with **React 19 + Vite 7**, featuring a dark aesthetic with animated particle fields, interactive sections, a smart AI-powered chatbot, and a fully responsive multi-page layout.
+A modern, cinematic personal portfolio website built with **React 19 + Vite 7 + TypeScript**, featuring a dark aesthetic with animated particle fields, interactive sections, a smart AI-powered chatbot, a full-screen blog reader, and a fully responsive multi-page layout — powered by a dedicated Node.js email backend.
 
-**Live:** [https://github.com/LifeEnthusiast03/Portfolio](https://github.com/LifeEnthusiast03/Portfolio)
+**🌐 Live Site:** [https://www.sougatasha.in](https://www.sougatasha.in)  
+**📦 Repository:** [github.com/LifeEnthusiast03/Portfolio](https://github.com/LifeEnthusiast03/Portfolio)
 
 ---
 
@@ -14,10 +15,12 @@ A modern, cinematic personal portfolio website built with **React 19 + Vite 7**,
 - **Projects Section** — Compact cards with image thumbnails, category filter (Full Stack / Frontend / Gen AI), accent-colored hover glows, and direct GitHub + Live links
 - **Skills Section** — Categorized tech stack display with animated entrance
 - **Education Section** — Timeline-style layout with academic details, SGPA, and certifications tab
-- **Blogs Section** — Searchable article grid with category filter, featured post highlight, read-time & view counts
-- **Contact Section** — Functional contact form with animated cards
+- **Blogs Section** — Searchable article grid with category filter, featured post highlight, read-time & view counts, and a full-screen **Blog Reader** modal with rich formatted content
+- **Contact Section** — Functional contact form backed by a Node.js + Nodemailer email server (deployed separately)
+- **Custom Cursor** — Premium animated cursor that enhances the interactive feel
 - **Animated Particles** — Shared reusable canvas component used across all pages for visual consistency
 - **Premium Dark Theme** — Unified `#030712` base with `44px` blueprint grid, radial ambient glows, and `backdrop-blur` glassmorphism throughout
+- **TypeScript Throughout** — Entire codebase (frontend + backend) written in strict TypeScript
 
 ---
 
@@ -33,48 +36,72 @@ Portfolio/
 │   ├── skyfleat.png         # SkyFlect screenshot
 │   └── Sougata_Saha.pdf     # Resume / CV
 ├── src/
-│   ├── App.jsx              # Root router + layout
-│   ├── main.jsx             # React entry point
+│   ├── App.tsx              # Root router + layout
+│   ├── main.tsx             # React entry point
 │   ├── index.css            # Global styles
 │   └── components/
-│       ├── Particles.jsx           # Shared animated canvas particle field
-│       ├── PageTransition.jsx      # Framer Motion page wrapper
-│       ├── ScrollToTop.jsx         # Scroll reset on route change
+│       ├── Particles.tsx           # Shared animated canvas particle field
+│       ├── PageTransition.tsx      # Framer Motion page wrapper
+│       ├── ScrollToTop.tsx         # Scroll reset on route change
+│       ├── CustomCursor.tsx        # Custom animated cursor
 │       ├── Navbar/
-│       │   └── navbar.jsx          # Fixed floating pill navbar
+│       │   └── navbar.tsx          # Fixed floating pill navbar
 │       ├── Footer/
-│       │   └── footer.jsx          # Compact single-bar footer
+│       │   └── footer.tsx          # Compact single-bar footer
 │       ├── ChatBot/
-│       │   └── chatbot.jsx         # AI portfolio assistant
+│       │   └── chatbot.tsx         # AI portfolio assistant
 │       ├── Herosection/
-│       │   └── herosection.jsx     # Landing hero with spotlight + particles
+│       │   └── herosection.tsx     # Landing hero with spotlight + particles
 │       ├── Projectsction/
-│       │   └── project.jsx         # Projects grid with filter
+│       │   └── project.tsx         # Projects grid with filter
 │       ├── Skillsection/
-│       │   └── skills.jsx          # Tech stack breakdown
+│       │   └── skills.tsx          # Tech stack breakdown
 │       ├── Educationsection/
-│       │   └── education.jsx       # Academic history + certifications
+│       │   └── education.tsx       # Academic history + certifications
 │       ├── Blogsection/
-│       │   └── blog.jsx            # Article grid with search & filter
+│       │   ├── blog.tsx            # Article grid with search & filter
+│       │   ├── BlogReader.tsx      # Full-screen blog reading modal
+│       │   └── blogData.ts         # Static blog content & metadata
 │       └── Contactsection/
-│           └── contact.jsx         # Contact form
+│           └── contact.tsx         # Contact form (calls email API)
+├── server/                         # Node.js email backend
+│   ├── src/
+│   │   └── index.ts               # Express + Nodemailer email API
+│   ├── package.json
+│   └── tsconfig.json
 ├── package.json
-├── vite.config.js
-└── tailwind.config.js
+├── vite.config.ts
+├── tsconfig.json
+├── tsconfig.node.json
+├── tailwind.config.js
+└── vercel.json                     # Client-side routing config for Vercel
 ```
 
 ---
 
 ## 🛠️ Tech Stack
 
+### Frontend
+
 | Category | Technologies |
 |---|---|
 | **Framework** | React 19, Vite 7 |
+| **Language** | TypeScript |
 | **Routing** | React Router DOM v7 |
 | **Styling** | Tailwind CSS v4 |
 | **Animations** | Framer Motion v12 |
 | **Icons** | Lucide React, React Icons (Simple Icons) |
 | **Canvas** | Vanilla Canvas API (particle field) |
+
+### Backend (Email Server)
+
+| Category | Technologies |
+|---|---|
+| **Runtime** | Node.js |
+| **Language** | TypeScript (ts-node-dev) |
+| **Framework** | Express.js |
+| **Email** | Nodemailer |
+| **Config** | dotenv, CORS |
 
 ---
 
@@ -86,29 +113,42 @@ Portfolio/
 | `/projects` | `ProjectsSection` | 4 featured projects with filter |
 | `/skills` | `SkillsSection` | Full tech stack breakdown |
 | `/education` | `EducationSection` | Academic background & certifications |
-| `/blogs` | `BlogSection` | Tech articles with search & categories |
+| `/blogs` | `BlogSection` + `BlogReader` | Tech articles with search, categories & full-screen reader |
 | `/contact` | `ContactSection` | Contact form + social links |
 
 ---
 
 ## 🧩 Key Components
 
-### `Particles.jsx`
+### `Particles.tsx`
 Reusable canvas-based animated particle field. 60 drifting dots with connecting lines under 100px proximity. Shared across all section pages for visual consistency.
 
-### `chatbot.jsx`
+### `chatbot.tsx`
 Portfolio-specific AI assistant with:
 - **15 knowledge topics**: identity, skills, all projects, education, contact, coding profiles, GenAI, frontend, backend, blogs, location, hobbies, availability
 - **Fuzzy multi-score matching**: exact → substring → word-level partial scoring
 - **Greeting / farewell / thanks** special-case handling
 - Quick-reply chips, animated typing indicator, bold `**text**` rendering
 
-### `herosection.jsx`
+### `herosection.tsx`
 - **Spotlight orb**: tracks mouse cursor with spring physics (`useMotionValue` + `useSpring`)
 - **Typewriter hook**: cycles through 5 role titles with configurable typing/delete/pause speeds
 - **Particles canvas**: 60-dot animated field
 - **Staggered entrance**: Framer Motion `initial → animate` with cascading delays
-- **6 social links**: GitHub, LinkedIn, Email, LeetCode (SiLeetcode), GFG (SiGeeksforgeeks), Codeforces (SiCodeforces)
+- **6 social links**: GitHub, LinkedIn, Email, LeetCode, GFG, Codeforces
+
+### `BlogReader.tsx`
+Full-screen immersive blog reader modal featuring:
+- Rich formatted content with headings, code blocks, and callouts
+- Reading progress bar
+- Estimated read time display
+- Smooth open/close animations via Framer Motion
+
+### `server/src/index.ts`
+Standalone Express email API:
+- `POST /api/send-email` — receives contact form payload, sends via Nodemailer (Gmail OAuth2 / App Password)
+- CORS-enabled for portfolio domain
+- Environment-variable driven configuration via `.env`
 
 ---
 
@@ -118,7 +158,7 @@ Portfolio-specific AI assistant with:
 - Node.js ≥ 18
 - npm ≥ 9
 
-### Installation
+### Frontend Setup
 
 ```bash
 # Clone the repository
@@ -134,13 +174,46 @@ npm run dev
 
 The app will be available at `http://localhost:5173`
 
+### Email Server Setup
+
+```bash
+cd server
+
+# Install dependencies
+npm install
+
+# Copy and configure environment variables
+cp .env.example .env
+# Edit .env with your Gmail credentials
+
+# Start the email server (development)
+npm run dev
+```
+
+The email API will be available at `http://localhost:4000`
+
+### Environment Variables (server/.env)
+
+```env
+EMAIL_USER=your_gmail@gmail.com
+EMAIL_PASS=your_app_password
+RECIPIENT_EMAIL=your_email@gmail.com
+PORT=4000
+```
+
+> **Note:** Use a Gmail [App Password](https://myaccount.google.com/apppasswords) — not your regular account password.
+
 ### Build for Production
 
 ```bash
+# Frontend
 npm run build
+
+# Email server
+cd server && npm run build
 ```
 
-Output goes to the `dist/` folder, ready for static hosting (Vercel, Netlify, GitHub Pages).
+Frontend output goes to the `dist/` folder, ready for static hosting (Vercel, Netlify, GitHub Pages).
 
 ### Preview Production Build
 
@@ -152,6 +225,8 @@ npm run preview
 
 ## 📦 Dependencies
 
+### Frontend (`package.json`)
+
 ```json
 {
   "dependencies": {
@@ -162,6 +237,35 @@ npm run preview
     "react-icons": "^5.6.0",
     "react-router-dom": "^7.14.2",
     "tailwindcss": "^4.1.11"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@typescript-eslint/eslint-plugin": "^8.59.0",
+    "@typescript-eslint/parser": "^8.59.0",
+    "@vitejs/plugin-react": "^4.5.2",
+    "typescript": "^6.0.3",
+    "vite": "^7.0.0"
+  }
+}
+```
+
+### Email Server (`server/package.json`)
+
+```json
+{
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "nodemailer": "^6.9.13"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/nodemailer": "^6.4.14",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.4.5"
   }
 }
 ```
@@ -194,4 +298,4 @@ npm run preview
 
 ## 📜 License
 
-MIT © 2025 Sougata Saha
+MIT © 2026 Sougata Saha
