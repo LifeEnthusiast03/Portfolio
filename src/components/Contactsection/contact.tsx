@@ -24,6 +24,7 @@ const ContactSection = () => {
   const [formData, setFormData] = useState<FormData>({ name: '', email: '', subject: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   const contactInfo: ContactInfo[] = [
@@ -53,14 +54,32 @@ const ContactSection = () => {
   };
 
   const handleSubmit = async () => {
+    if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+      setError('Please fill in all fields.');
+      return;
+    }
+    setError(null);
     setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({ name: '', email: '', subject: '', message: '' });
-    }, 3000);
+    try {
+      const res = await fetch('http://localhost:4000/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json() as { success: boolean; error?: string };
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || 'Something went wrong.');
+      }
+      setIsSubmitted(true);
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      }, 4000);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to send message. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -188,6 +207,11 @@ const ContactSection = () => {
                     className="w-full px-3 py-2.5 bg-black/50 border border-gray-800/70 rounded-lg focus:border-violet-500/50 focus:outline-none focus:ring-2 focus:ring-violet-500/20 text-gray-200 placeholder-gray-600 transition-all duration-300 resize-none hover:border-gray-700/70"
                     placeholder="Tell me about your project ideas..." required />
                 </div>
+                {error && (
+                  <div className="flex items-center gap-2 px-4 py-3 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400 text-sm">
+                    <span>⚠️</span><span>{error}</span>
+                  </div>
+                )}
                 <button
                   type="button" onClick={handleSubmit} disabled={isSubmitting || isSubmitted}
                   className={`w-full py-3 px-6 rounded-lg font-semibold text-white transition-all duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-blue-500/50 flex items-center justify-center ${
@@ -197,7 +221,7 @@ const ContactSection = () => {
                   {isSubmitting ? (
                     <><div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent mr-3" />Sending...</>
                   ) : isSubmitted ? (
-                    <><CheckCircle className="w-4 h-4 mr-3" />Message Sent!</>
+                    <><CheckCircle className="w-4 h-4 mr-3" />Message Sent! Check your inbox ✉️</>
                   ) : (
                     <><Send className="w-4 h-4 mr-3" />Send Message</>
                   )}
